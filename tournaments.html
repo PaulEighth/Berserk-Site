@@ -968,6 +968,9 @@
 .swiss-bracket-after{margin-top:18px;padding-top:16px;border-top:1px solid rgba(232,194,112,.16)}
 @media(max-width:680px){.swiss-controls .btn{width:auto}.swiss-pair{grid-template-columns:1fr}.swiss-result{grid-column:auto}.swiss-result-label{grid-column:auto}}
 
+
+/* Fix: декоративные псевдоэлементы не должны перекрывать клики по кнопкам */
+.tournament-card:before,.highlight-box:before{pointer-events:none}
 </style>
 </head>
 <body>
@@ -1082,7 +1085,7 @@
       </div>
 
       <div class="track-delete-actions">
-        <button class="btn danger" id="deleteTournamentBtn">Удалить турнир</button>
+        <button type="button" class="btn danger" id="deleteTournamentBtn">Удалить турнир</button>
       </div>
 
       <div class="track-info" id="trackInfo"></div>
@@ -1169,8 +1172,8 @@
       <h2>Удалить турнир?</h2>
       <p id="deleteTournamentText">Это действие уберёт турнир из списка и очистит участников, сетку и счёт этого турнира в этом браузере.</p>
       <div class="delete-tournament-actions">
-        <button class="btn danger" id="confirmDeleteTournament">Удалить турнир</button>
-        <button class="btn ghost" id="cancelDeleteTournament">Отмена</button>
+        <button type="button" class="btn danger" id="confirmDeleteTournament">Удалить турнир</button>
+        <button type="button" class="btn ghost" id="cancelDeleteTournament">Отмена</button>
       </div>
     </div>
   </div>
@@ -2334,7 +2337,7 @@
           + '</div>'
           + '<div class="places"><div class="places-head"><span>Занято '+busy+'/'+t.places+'</span><span>Свободно: '+free+'</span></div><div class="bar"><i style="width:'+percent+'%"></i></div></div>'
           + renderPlayers(t.id)
-          + '<div class="card-actions"><button class="btn gold" '+(disabled ? 'disabled' : '')+' onclick="openJoinModal('+t.id+')">'+(disabled ? 'Регистрация закрыта' : 'Участвовать')+'</button><button class="btn ghost" onclick="openTrackModal('+t.id+')">Отслеживать</button><a class="btn ghost" href="deck-builder_checked.html">Собрать колоду</a></div>'
+          + '<div class="card-actions"><button class="btn gold" '+(disabled ? 'disabled' : '')+' onclick="openJoinModal('+t.id+')">'+(disabled ? 'Регистрация закрыта' : 'Участвовать')+'</button><button type="button" class="btn ghost track-tournament-btn" data-track-id="'+t.id+'" onclick="openTrackModal('+t.id+')">Отслеживать</button><a class="btn ghost" href="deck-builder_checked.html">Собрать колоду</a></div>'
           + '</article>';
       }).join('');
     }
@@ -2459,6 +2462,26 @@
         openScoreModal(id, group, side, round, slot, nick);
       }else{
         openCellPlayerModal(id, group, side, round, slot);
+      }
+    }, true);
+
+    // Надёжный обработчик кнопки «Отслеживать»: работает даже после перерисовки карточек турниров.
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-track-id]');
+      if(!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openTrackModal(btn.dataset.trackId);
+    }, true);
+
+    // Надёжный обработчик удаления: берёт текущий открытый турнир из currentTrackTournamentId.
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('#deleteTournamentBtn');
+      if(!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if(currentTrackTournamentId !== null && currentTrackTournamentId !== undefined){
+        openDeleteTournamentModal(currentTrackTournamentId);
       }
     }, true);
 
