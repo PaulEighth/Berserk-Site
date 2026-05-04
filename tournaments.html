@@ -1183,12 +1183,7 @@
   </footer>
 
   <script>
-    let tournaments = [
-      {id:1,title:'Тёмная Лига: старт сезона',organizer:'Paul_Eighth',date:'2026-05-03 19:00',status:'open',format:'bo3',mode:'1 на 1',prize:'3000 ₽ + роль чемпиона',prizeValue:3000,places:16,free:7,deckRules:'Одна колода, замена запрещена',editRights:'organizer',description:'Основной вечерний турнир для игроков БГО с матчами до двух побед.'},
-      {id:2,title:'Кубок новичков',organizer:'BHO Community',date:'2026-05-06 18:00',status:'open',format:'bo1',mode:'1 на 1',prize:'1500 ₽',prizeValue:1500,places:24,free:15,deckRules:'Можно менять колоду между раундами',editRights:'organizer',description:'Спокойный турнир для новых игроков: быстрые партии, понятная сетка и помощь организатора.'},
-      {id:3,title:'Мета Челлендж',organizer:'Paul_Eighth',date:'2026-05-10 20:00',status:'soon',format:'swiss',mode:'Швейцарка',prize:'5000 ₽ + медиа-пост',prizeValue:5000,places:32,free:32,deckRules:'Две колоды, бан одной перед матчем',editRights:'organizer',description:'Событие для проверки сильных колод и свежей меты. Регистрация откроется позже.'},
-      {id:4,title:'Архив: апрельский кубок',organizer:'Paul_Eighth',date:'2026-04-20 18:00',status:'finished',format:'bo3',mode:'1 на 1',prize:'Завершён',prizeValue:0,places:16,free:0,deckRules:'Архивное событие',editRights:'organizer',description:'Прошедший турнир для истории результатов и доверия к турнирному разделу.'}
-    ];
+    let tournaments = [];
 
     const statusMap = {open:['Регистрация открыта','green'],soon:['Скоро',''],closed:['Мест нет','red'],finished:['Завершён','']};
     const formatMap = {bo1:'BO1',bo3:'BO3',swiss:'Швейцарка',single:'Олимпийка'};
