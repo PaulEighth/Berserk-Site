@@ -2545,50 +2545,42 @@ function closeAlert(){
   font-weight:900;
   cursor:pointer;
 ">
-  🔊 Звук: ВКЛ
+  🔇 Звук: ВЫКЛ
 </button>
 
 <script>
 const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicToggle");
 
-// 👉 читаем сохранённые данные
 let savedTime = localStorage.getItem("musicTime");
-let savedMuted = localStorage.getItem("musicMuted");
 
 // громкость
 music.volume = 1;
+
+// музыка изначально выключена
+music.muted = true;
+btn.textContent = "🔇 Звук: ВЫКЛ";
 
 // если есть время — продолжаем с него
 if (savedTime) {
   music.currentTime = savedTime;
 }
 
-// состояние звука
-if (savedMuted === "true") {
-  music.muted = true;
-  btn.textContent = "🔇 Звук: ВЫКЛ";
-} else {
-  music.muted = false;
-  btn.textContent = "🔊 Звук: ВКЛ";
-}
-
-// запускаем музыку при первом клике (обход блокировки браузера)
-document.addEventListener("click", () => {
-  music.play();
-}, { once: true });
-
-// кнопка звук вкл/выкл
+// кнопка включает / выключает музыку
 btn.addEventListener("click", () => {
-  music.muted = !music.muted;
-  localStorage.setItem("musicMuted", music.muted);
-
-  btn.textContent = music.muted 
-    ? "🔇 Звук: ВЫКЛ" 
-    : "🔊 Звук: ВКЛ";
+  if (music.paused) {
+    music.play();
+    music.muted = false;
+    btn.textContent = "🔊 Звук: ВКЛ";
+  } else {
+    music.muted = !music.muted;
+    btn.textContent = music.muted
+      ? "🔇 Звук: ВЫКЛ"
+      : "🔊 Звук: ВКЛ";
+  }
 });
 
-// 👉 сохраняем время каждую секунду
+// сохраняем время каждую секунду
 setInterval(() => {
   localStorage.setItem("musicTime", music.currentTime);
 }, 1000);
