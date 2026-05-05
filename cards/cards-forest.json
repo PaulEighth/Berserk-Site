@@ -7,7 +7,7 @@
     "attack": 0,
     "health": 32,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Герой-маг\n1🪙,⬇️ - Излечите персонажа на 2\n3🪙,⬇️ - Излечите персонажа на 3",
     "image": "Images/Лес/Алирра.png"
@@ -20,7 +20,7 @@
     "attack": 0,
     "health": 28,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Герой-воин\n2🪙,⬇️ - Выстрел 1\n6🪙,⬇️ - Получает +1 к выстрелам (1 раз за игру)",
     "image": "Images/Лес/Илариэль.png"
@@ -33,7 +33,7 @@
     "attack": 0,
     "health": 26,
     "rarity": "ultra",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Герой-маг\n1🪙,⬇️ - В начале вашего следующего хода получите 1🪙 до конца хода",
     "image": "Images/Лес/Нархи.png"
@@ -46,7 +46,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Получите 1🪙 до конца хода",
     "image": "Images/Лес/Цветение.png"
@@ -59,7 +59,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Амулет\nВ конце вашего хода изличите всех ваших персонажей на 1",
     "image": "Images/Лес/Амулет силы земли.png"
@@ -72,7 +72,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nПолучает 2 усиления, когда ваше дитя Кронга убивает существо (один раз за ход) Подавление",
     "image": "Images/Лес/Атекар.png"
@@ -85,7 +85,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Ваше существо и существо противника сражаются",
     "image": "Images/Лес/Встреча в лесу.png"
@@ -98,7 +98,7 @@
     "attack": 2,
     "health": 1,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nКогда другое ваше Дитя Кронга входит в игру, закройте существо (один раз за ход)\nПодавление",
     "image": "Images/Лес/Серк.png"
@@ -111,7 +111,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Зелье\nИзличите суммарно до 3 ран на ваших персонажах",
     "image": "Images/Лес/Фиал исцеления.png"
@@ -124,7 +124,7 @@
     "attack": 1,
     "health": 1,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Фея\nОрда\nНаправленный удар\nРывок\nГибель - Вы можете вернуть Эльма в колоду вместо кладбища",
     "image": "Images/Лес/Эльм.png"
@@ -137,7 +137,7 @@
     "attack": 0,
     "health": 3,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\n⬇️ - Выстрел 1",
     "image": "Images/Лес/Эльф лучник.png"
@@ -150,7 +150,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Зелье\nИзличите суммарно до 3 ран на ваших персонажах",
     "image": "Images/Лес/Эльфийская целительница.png"
@@ -163,7 +163,7 @@
     "attack": 2,
     "health": 4,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф",
     "image": "Images/Лес/Антар.png"
@@ -176,7 +176,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Ваши существа наносят на 1 рану больше до конца хода. Возьмите карту",
     "image": "Images/Лес/Боевые эликсиры.png"
@@ -189,7 +189,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Броня\nКогда ваше существо получает раны первый раз за ход - излечите это существо на 1",
     "image": "Images/Лес/Доспех лозы.png"
@@ -202,7 +202,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nНе может выступать защитником\n⬇️ - потратьте X🪙, чтобы получить X зарядов в Древе\n⬇️ - потратить все заряды, чтобы раскопать и призвать существо со стоимостью X, где X - сумма зарядов в Древе (не больше 10)",
     "image": "Images/Лес/Древо жизни.png"
@@ -215,7 +215,7 @@
     "attack": 1,
     "health": 4,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nВ конце вашего хода излечите персонажа на 1",
     "image": "Images/Лес/Кешт.png"
@@ -228,7 +228,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Существо теряет особенности\nВозьмите карту",
     "image": "Images/Лес/Протоформа.png"
@@ -241,7 +241,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Все существа противника теряют особенности",
     "image": "Images/Лес/Пыль забвения.png"
@@ -254,7 +254,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nНаправленный удар\nПри ударе атакованное существо теряет особенности",
     "image": "Images/Лес/Разящий следопыт.png"
@@ -267,7 +267,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Поиск карты Лесов",
     "image": "Images/Лес/Сфера леса.png"
@@ -280,7 +280,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\n⬇️ - Выстрел 2. +1 к выстрелу по существам с выстрелом",
     "image": "Images/Лес/Тейглос.png"
@@ -293,7 +293,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Зелье\nПокажите верхнюю карту колоды и возьмите ее. Если это существо, в этот ход оно на 4🪙 дешевле",
     "image": "Images/Лес/Фиал предвидения.png"
@@ -306,7 +306,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Получите 1🪙",
     "image": "Images/Лес/Чешуя дракона.png"
@@ -319,7 +319,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nКогда ваше дитя Кронга убивает существо, получите 1🪙 (один раз за ход)\nПодавление",
     "image": "Images/Лес/Воронга.png"
@@ -332,7 +332,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nНайм - Излечите персонажа на 2",
     "image": "Images/Лес/Вэлла.png"
@@ -345,7 +345,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nНаправленный удар\nПри ударе атакованное существо теряет особенности",
     "image": "Images/Лес/Зверинец.png"
@@ -358,7 +358,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nДети Кронга не получают ран от заклинаний\nПодавление",
     "image": "Images/Лес/Клаэр.png"
@@ -371,7 +371,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Амулет\nВаши существа стоят на 1 дешевле",
     "image": "Images/Лес/Лики чащи.png"
@@ -384,7 +384,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Оружие\nВаши персонажи имеют +1 к выстрелам",
     "image": "Images/Лес/Лук рассвета.png"
@@ -397,7 +397,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nЗащита от выстрелов\nУклонение от заклинаний\nПри Выстреле другого вашего персонажа по существу противника, сражается с целью этого выстрела",
     "image": "Images/Лес/Скользящий меж стрел.png"
@@ -410,7 +410,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nНайм - Возьмите карту",
     "image": "Images/Лес/Странствующий друид.png"
@@ -423,7 +423,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\n⬇️ - Выстрел 2",
     "image": "Images/Лес/Эльф-всадник.png"
@@ -436,7 +436,7 @@
     "attack": 2,
     "health": 4,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\n⬇️ - Выстрел 2, атакованное существо теряет особенности",
     "image": "Images/Лес/Аллар.png"
@@ -449,7 +449,7 @@
     "attack": 1,
     "health": 7,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nУклонение от заклинаний\nСущества противника не могут атаковать ударом других существ, пока на этом существе нет ран",
     "image": "Images/Лес/Ламия.png"
@@ -462,7 +462,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nГибель - Каждый игрок получает 1🪙",
     "image": "Images/Лес/Ноггл.png"
@@ -475,7 +475,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Выберите любое число ваших существ. Они по очереди сражаются с выбранными существами противника",
     "image": "Images/Лес/Побоище.png"
@@ -488,7 +488,7 @@
     "attack": 3,
     "health": 5,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nНайм - Заплатите X🪙, затем Выстрел с этой силой по существу\nПодавление",
     "image": "Images/Лес/Снаг.png"
@@ -501,7 +501,7 @@
     "attack": 3,
     "health": 6,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nУклонение от заклинаний\nОпыт в защите",
     "image": "Images/Лес/Стража покоев.png"
@@ -514,7 +514,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nНайм - Поиск существа",
     "image": "Images/Лес/Эльф-дозорный.png"
@@ -527,7 +527,7 @@
     "attack": 1,
     "health": 5,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\n⬇️ - 2 выстрела 2 по разным персонажам",
     "image": "Images/Лес/Эльф-снайпер.png"
@@ -540,7 +540,7 @@
     "attack": 4,
     "health": 6,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф",
     "image": "Images/Лес/Князь эльфов.png"
@@ -553,7 +553,7 @@
     "attack": 4,
     "health": 6,
     "rarity": "common",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nНайм - Сражается с существом противника",
     "image": "Images/Лес/Турс.png"
@@ -566,7 +566,7 @@
     "attack": 4,
     "health": 6,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nЗащита от отравления\nОпыт в атаке\nОпыт в защите",
     "image": "Images/Лес/Кабу-Ву.png"
@@ -579,7 +579,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nНайм - Получить 2 из 4:\n-Броня 2\n-Первый удар\n-Рывок\n-+2к удару",
     "image": "Images/Лес/Келе.png"
@@ -592,7 +592,7 @@
     "attack": 4,
     "health": 6,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дитя Кронга\nНПодавление ваших существ срабатывает при объявлении атаки (а не после атаки)",
     "image": "Images/Лес/Пантера.png"
@@ -605,7 +605,7 @@
     "attack": 3,
     "health": 8,
     "rarity": "ultra",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Эльф\nНаправленный удар\nРывок\nПри ударе по существу, ваши существа с Выстрелом производят Выстрел 1 по персонажам",
     "image": "Images/Лес/Эн-Тальмеш.png"
@@ -618,7 +618,7 @@
     "attack": 5,
     "health": 7,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Страж леса\nПри ударе - откройте другое ваше существо",
     "image": "Images/Лес/Витязь Святолесья.png"
@@ -631,7 +631,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Поиск существа стоимостью 6🪙 или менее; вы можете разыграть это существо бесплатно",
     "image": "Images/Лес/Приручение.png"
@@ -644,7 +644,7 @@
     "attack": 3,
     "health": 8,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Дух\nКогда ваше существо погибает, вы можете до конца хода бесплатно разыграть существо такой же или меньшей стоимости (один раз за ход)",
     "image": "Images/Лес/Стерегущие духи.png"
@@ -657,7 +657,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Вы и противник по очереди бесплатно разыгрываете до 5 карт существ",
     "image": "Images/Лес/Зов стаи.png"
@@ -670,7 +670,7 @@
     "attack": 6,
     "health": 15,
     "rarity": "ultra",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Древо\nУникальность\nУ других существ не работают особенности",
     "image": "Images/Лес/Грибыныч.png"
@@ -683,7 +683,7 @@
     "attack": 10,
     "health": 20,
     "rarity": "rare",
-    "element": "forest",
+    "elements": ["forest"],
     "set": "Основной",
     "text": "Древо\nНайм - Закрывается.\nПри атаке не открывается в свой следующий ход",
     "image": "Images/Лес/Дендроид.png"

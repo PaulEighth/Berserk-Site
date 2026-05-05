@@ -7,7 +7,7 @@
     "attack": 0,
     "health": 26,
     "rarity": "ultra",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Герой-маг\n2🪙,⬇️ - Ваше существо получает при получении ран, нанесите раны персонажу противника, равные потерянному таким образом здоровью",
     "image": "Images/Степи/Эндор Флем.png"
@@ -20,7 +20,7 @@
     "attack": 0,
     "health": 25,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Герой-маг\n1🪙,⬇️ - Раньте существо на половину оставшихся жизней(округлять вниз)",
     "image": "Images/Степи/Руах.png"
@@ -33,7 +33,7 @@
     "attack": 0,
     "health": 28,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Герой-воин\n🪙2,⬇️ - Существо получает Опыт в атаке и Рывок",
     "image": "Images/Степи/Свирепый резак.png"
@@ -46,7 +46,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Раньте существо на 1, это существо получает +2 к удару",
     "image": "Images/Степи/Ожившее пламя.png"
@@ -59,7 +59,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "ultra",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Зверь\nНе может атаковать и выступать защитником. В конце вашего хода сражается со случайным существом",
     "image": "Images/Степи/Бешеный пес.png"
@@ -72,7 +72,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Положите карту из вашей руки под низ колоды, затем возьмите две картыу",
     "image": "Images/Степи/Искра гениальности.png"
@@ -85,7 +85,7 @@
     "attack": 3,
     "health": 1,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк",
     "image": "Images/Степи/Молодой орк.png"
@@ -98,7 +98,7 @@
     "attack": 1,
     "health": 1,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНайм - Выстрел 1\nГнев",
     "image": "Images/Степи/Орк лучник.png"
@@ -111,7 +111,7 @@
     "attack": 2,
     "health": 1,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nРывок",
     "image": "Images/Степи/Орк провокатор.png"
@@ -124,7 +124,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Уничтожьте раненое существо",
     "image": "Images/Степи/Сожжение.png"
@@ -137,7 +137,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Раньте персонажа на 2",
     "image": "Images/Степи/Поток энергии.png"
@@ -150,7 +150,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Зверь\nРывок и +1 к удару за каждого другого Цепного пса\nОрда",
     "image": "Images/Степи/Цепной пес.png"
@@ -163,7 +163,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Аккениец\n⬇️ - Выстрел 1\nРывок",
     "image": "Images/Степи/Велит.png"
@@ -176,7 +176,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Броня\nВаш герой имеет Броню 2",
     "image": "Images/Степи/Плетеный щит.png"
@@ -189,7 +189,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nОпыт в атаке и +2 к удару, если у вас есть другое существо",
     "image": "Images/Степи/Гневный орк.png"
@@ -202,7 +202,7 @@
     "attack": 3,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nРывок",
     "image": "Images/Степи/Жрец клана.png"
@@ -215,7 +215,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Наемник\nНайм - Существо прот",
     "image": "Images/Степи/Заклинательница змей.png"
@@ -228,7 +228,7 @@
     "attack": 3,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Аккениец\nНаправленный удар по существам с Уязвимостью",
     "image": "Images/Степи/Мастер клинка.png"
@@ -241,7 +241,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nРывок\nНайм - Другое существо получает Направленный удар",
     "image": "Images/Степи/Нгонасах.png"
@@ -254,7 +254,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Аккениец\n⬇️ - Существо получает Уязвимость",
     "image": "Images/Степи/Обрекающий.png"
@@ -267,7 +267,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Выберите существо. Оно не получает раны от ударов до конца хода противника. Возьмите карту",
     "image": "Images/Степи/Огненный щит.png"
@@ -280,7 +280,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Оружие\n⬇️ - Закройте вашего героя; закройте рененое существо",
     "image": "Images/Степи/Секира Захры.png"
@@ -293,7 +293,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Тао-Дан\nНайм - Выберите существо. Оно не получает ран до конца хода противника",
     "image": "Images/Степи/Сохуру-морра.png"
@@ -306,7 +306,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Поиск карты Степей",
     "image": "Images/Степи/Сфера бури.png"
@@ -319,7 +319,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Возьмите 3 карты. В конце хода сбросьте все карты",
     "image": "Images/Степи/Алчность.png"
@@ -332,7 +332,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Амулет\nВаш герой имеет Защиту от первой атаки за ход",
     "image": "Images/Степи/Амулет Тоа-Дана.png"
@@ -345,7 +345,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Раньте всех существ на 2",
     "image": "Images/Степи/Волна огня.png"
@@ -358,7 +358,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Возьмите под контроль раненое существо противника до конца хода, откройте его, оно получает Рывок",
     "image": "Images/Степи/Дезориентация.png"
@@ -371,7 +371,7 @@
     "attack": 0,
     "health": 7,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Тоа-Дан\n⬇️ - Предотвращает следующие 2 раны, нанесенные противником вашим персонажам",
     "image": "Images/Степи/Защитник границ.png"
@@ -384,7 +384,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Наемник\nНайм - Откройте ваше существо",
     "image": "Images/Степи/Маг ордена саламандры.png"
@@ -397,7 +397,7 @@
     "attack": 4,
     "health": 2,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНайм - Закройте существо",
     "image": "Images/Степи/Орк-егерь.png"
@@ -410,7 +410,7 @@
     "attack": 3,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНайм - Выстрел 1 Если цель погибла - еще один выстрел 1",
     "image": "Images/Степи/Орк-загонщик.png"
@@ -423,7 +423,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Оружие\nВаши существа имеют +1 к удару",
     "image": "Images/Степи/Орочий ятаган.png"
@@ -436,7 +436,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Раньте персонажа на 4",
     "image": "Images/Степи/Плетение огня.png"
@@ -449,7 +449,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Тоа-Дан\nПосле гибели вашего существа, другое ваше существо получает Уязвимость",
     "image": "Images/Степи/Риат-Дарра.png"
@@ -462,7 +462,7 @@
     "attack": 3,
     "health": 2,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНаправленный удар",
     "image": "Images/Степи/Рубака клана.png"
@@ -475,7 +475,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Аккениец\nКогда существо противника выходит в игру - выстрел 1 по этому существу",
     "image": "Images/Степи/Хазг.png"
@@ -488,7 +488,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Амулет\nВсе существа противника получают Уязвимость, где бы они не были",
     "image": "Images/Степи/Аккения.png"
@@ -501,7 +501,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Закройте всех существ стоимостью 4 или более\nОткройте всех существ стоимостью 3 или менее",
     "image": "Images/Степи/Второе дыхание.png"
@@ -514,7 +514,7 @@
     "attack": 7,
     "health": 3,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк",
     "image": "Images/Степи/Гролль.png"
@@ -527,7 +527,7 @@
     "attack": 4,
     "health": 2,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nУклонение от заклинаний\nНайм - Выстрел 2",
     "image": "Images/Степи/Лучник Захры.png"
@@ -540,7 +540,7 @@
     "attack": 2,
     "health": 7,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНаправленный удар\nПолучает +1 к удару за каждую рану на себе",
     "image": "Images/Степи/Пылающий исполин.png"
@@ -553,7 +553,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nПока это существо на кладбище, ваши существа Степей имеют +1 к удару",
     "image": "Images/Степи/Вождь клана.png"
@@ -566,7 +566,7 @@
     "attack": 5,
     "health": 3,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nНайм - до 5 выстрелов 1, только по разным персонажам Гнев",
     "image": "Images/Степи/Орк-арбалетчик.png"
@@ -579,7 +579,7 @@
     "attack": 6,
     "health": 2,
     "rarity": "ultra",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nГнев\nНаправленный удар\nПервый удар\nРывок",
     "image": "Images/Степи/Багатур.png"
@@ -592,7 +592,7 @@
     "attack": 1,
     "health": 8,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Тоа-Дан\nНайм - Выберите существо. Оно не получает ран до конца хода противника.\n⬇️ - Выберите другое существо. Оно не получает ран до конца хода противника",
     "image": "Images/Степи/Маг пустоты.png"
@@ -605,7 +605,7 @@
     "attack": 4,
     "health": 6,
     "rarity": "ultra",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Зверь\nНайм - Уничтожьте всех существ стоимостью 3🪙 или менее",
     "image": "Images/Степи/Раптор.png"
@@ -618,7 +618,7 @@
     "attack": 6,
     "health": 3,
     "rarity": "common",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Аккениец\nБроня 3\nРывок",
     "image": "Images/Степи/Рыцарь Туллена.png"
@@ -631,7 +631,7 @@
     "attack": 6,
     "health": 8,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Зверь\nРывок\nВозвращается в руку, если в конце хода на нем нет ран за последний ход",
     "image": "Images/Степи/Джаггернаут.png"
@@ -644,7 +644,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Раньте персонажа на 8",
     "image": "Images/Степи/Первобытый огонь.png"
@@ -657,7 +657,7 @@
     "attack": 9,
     "health": 6,
     "rarity": "rare",
-    "element": "steppes",
+    "elements": ["steppes"],
     "set": "Основной",
     "text": "Орк\nРывок\nНаправленный удар\nУдары этого существа по герою сводятся к 0, если под контролем этого героя есть существо",
     "image": "Images/Степи/Хоб-Орк.png"

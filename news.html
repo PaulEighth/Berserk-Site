@@ -68,6 +68,184 @@
 .custom-confirm-box h3{margin:0 0 10px;color:var(--gold2)}
 .custom-confirm-actions{display:flex;gap:12px;justify-content:center;margin-top:18px}
 
+
+/* FIX NEWS MODAL: галерея под основной картинкой, текст справа, без обрезки */
+.modal-layout{
+  grid-template-columns:minmax(280px,420px) 1fr !important;
+  align-items:start !important;
+}
+.cover{
+  object-fit:contain !important;
+  background:rgba(255,255,255,.04) !important;
+}
+.left-gallery-title{
+  margin:16px 0 10px;
+  font-size:16px;
+  color:var(--gold2);
+  letter-spacing:-.02em;
+}
+.news-gallery{
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:8px !important;
+  margin-top:0 !important;
+}
+.news-gallery img{
+  width:100% !important;
+  aspect-ratio:1/1 !important;
+  object-fit:contain !important;
+  background:rgba(255,255,255,.045) !important;
+  border-radius:14px !important;
+  border:1px solid rgba(232,194,112,.16) !important;
+  cursor:pointer !important;
+  padding:4px !important;
+}
+.news-gallery img:hover{
+  border-color:rgba(240,210,139,.55) !important;
+  transform:translateY(-2px);
+}
+.slots-title{display:none !important;}
+.news-image-viewer{
+  position:fixed;
+  inset:0;
+  z-index:25000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(12px);
+}
+.news-image-viewer.show{display:flex;}
+.news-image-viewer img{
+  max-width:min(1100px,94vw);
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:22px;
+  border:1px solid rgba(232,194,112,.22);
+  background:rgba(255,255,255,.04);
+  box-shadow:0 35px 110px rgba(0,0,0,.65);
+}
+.news-image-viewer-close{
+  position:fixed;
+  top:24px;
+  right:24px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid rgba(232,194,112,.24);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:30px;
+  cursor:pointer;
+}
+@media(max-width:1180px){
+  .modal-layout{grid-template-columns:1fr !important;}
+  .cover{max-width:520px;}
+  .news-gallery{max-width:520px;}
+}
+
+
+/* FINAL FIX: media gallery under cover, no crop, GIF/video support */
+.news-gallery .media-thumb,
+.news-gallery img{
+  width:100% !important;
+  aspect-ratio:1/1 !important;
+  object-fit:contain !important;
+  background:rgba(255,255,255,.045) !important;
+  border-radius:14px !important;
+  border:1px solid rgba(232,194,112,.16) !important;
+  cursor:pointer !important;
+  padding:4px !important;
+}
+.media-thumb-wrap{position:relative}
+.media-play-badge{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(0,0,0,.58);border:1px solid rgba(240,210,139,.45);
+  color:#f0d28b;pointer-events:none;font-weight:950
+}
+.news-image-viewer video{
+  max-width:min(1100px,94vw);
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:22px;
+  border:1px solid rgba(232,194,112,.22);
+  background:#000;
+  box-shadow:0 35px 110px rgba(0,0,0,.65);
+}
+.news-card{display:block;width:100%}
+.news-admin-actions .btn{width:auto}
+
+
+/* FINAL FIX: hide footer and keep edit form above news modal */
+.footer{display:none!important}
+#formModal{z-index:26000!important}
+#formModal.show{display:flex!important}
+#newsModal{z-index:9999}
+#requestsModal{z-index:9999}
+#customConfirm{z-index:30000!important}
+#customAlert{z-index:31000!important}
+.news-image-viewer{z-index:32000!important}
+
+
+/* FINAL SAVE FIX */
+.footer{display:none!important}
+#formModal{z-index:26000!important}
+#customConfirm{z-index:30000!important}
+#customAlert{z-index:31000!important}
+
+
+/* FIX: news card images not cropped */
+.news-thumb{
+  width:100%;
+  height:auto !important;
+  object-fit:contain !important;
+  background:rgba(255,255,255,.04);
+  border-radius:20px;
+}
+.news-card img{
+  object-fit:contain !important;
+}
+
+
+/* FIX: text stays inside article column and expands modal downward */
+.modal-box{
+  overflow:auto !important;
+  overflow-x:hidden !important;
+}
+.modal-layout{
+  grid-template-columns:minmax(260px,420px) minmax(0,1fr) !important;
+  align-items:start !important;
+}
+.modal-layout article{
+  min-width:0 !important;
+  overflow-wrap:anywhere !important;
+  word-break:break-word !important;
+}
+.article-text{
+  max-width:100% !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  word-break:break-word !important;
+}
+.article-text p{
+  max-width:100% !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  word-break:break-word !important;
+}
+#modalText{
+  max-width:100% !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  word-break:break-word !important;
+}
+#modalTitle{
+  overflow-wrap:anywhere !important;
+  word-break:break-word !important;
+}
+
 </style>
 </head>
 <body>
@@ -209,7 +387,7 @@
     <a href="BerserHeroesOnline.html">О сайте</a>
     <a href="deck-builder_checked.html">База карт</a>
     <a href="decks_select_publish.html#deck">Колоды</a>
-    <a href="meta.html#meta">Мета</a>
+    <a href="meta.html#meta">(Мета тех.работа)</a>
     <a href="tournaments.html">Турниры</a>
     <a class="active" href="news.html">Новости</a>
     <a href="BerserHeroesOnline.html#contacts">Контакты</a>
@@ -244,16 +422,26 @@
     <div class="modal-box" role="dialog" aria-modal="true" aria-label="Полная новость">
       <button class="modal-close" id="modalClose" title="Закрыть">×</button>
       <div class="modal-layout">
-        <div><img class="cover" id="modalCover" alt="Обложка новости"></div>
+        <div>
+          <img class="cover" id="modalCover" alt="Обложка новости">
+          <h3 class="left-gallery-title">Дополнительные изображения</h3>
+          <div class="news-gallery" id="modalGallery"></div>
+        </div>
         <article>
           <div class="article-meta" id="modalTags"></div>
           <h2 id="modalTitle"></h2>
           <div class="article-text" id="modalText"></div>
-          <h3 class="slots-title">Дополнительные изображения</h3>
-          <div class="news-gallery" id="modalGallery"></div><div class="news-admin-actions" id="modalAdminActions"></div>
+          <div class="news-admin-actions" id="modalAdminActions"></div>
         </article>
       </div>
     </div>
+  </div>
+
+
+  <div class="news-image-viewer" id="newsImageViewer" aria-hidden="true">
+    <button class="news-image-viewer-close" id="newsImageViewerClose" title="Закрыть">×</button>
+    <img id="newsImageViewerImg" alt="Изображение новости">
+    <video id="newsImageViewerVideo" controls playsinline style="display:none"></video>
   </div>
 
   <div class="modal" id="formModal" aria-hidden="true">
@@ -285,9 +473,9 @@
         </label>
 
         <label class="full">
-          <span class="label">Дополнительные фотографии — до 9 штук</span>
-          <div class="file-field"><input type="file" id="newsExtraInput" accept="image/*" multiple></div>
-          <div class="slot-note">Можно выбрать до 9 изображений. Они будут отображаться в полной новости.</div>
+          <span class="label">Дополнительные медиа — до 9 штук</span>
+          <div class="file-field"><input type="file" id="newsExtraInput" accept="image/*,video/*" multiple></div>
+          <div class="slot-note">Можно выбрать до 9 изображений, GIF или видео до 5 минут. Видео в HTML-версии хранится временно до перезагрузки страницы.</div>
         </label>
       </div>
 
@@ -326,7 +514,7 @@
       <p id="customAlertText">Действие выполнено.</p>
       <button class="btn gold" id="customAlertOk">OK</button>
     </div>
-  </div></main><footer class="footer"><div class="wrap"><div>Неофициальный фан-сайт.</div><div><a href="BerserHeroesOnline.html#contacts">Контакты</a> · <a href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a></div></div></footer>
+  </div></main>
 
   <script>
     history.scrollRestoration = "manual";
@@ -337,10 +525,12 @@
     let NEWS = JSON.parse(localStorage.getItem(NEWS_KEY) || '[]');
     let NEWS_REQUESTS = JSON.parse(localStorage.getItem(REQUESTS_KEY) || '[]');
     let formMode = 'create';
+    let editingNewsIndex = null;
     let selectedCover = '';
     let selectedExtras = [];
     let currentOpenNewsIndex = null;
     let previewingRequest = false;
+    let currentOpenMediaList = [];
     let pendingDeleteRequestIndex = null;
     let confirmMode = 'news';
 
@@ -352,7 +542,17 @@
     const formModal = document.getElementById('formModal');
     const requestsModal = document.getElementById('requestsModal');
 
-    function saveNews(){ localStorage.setItem(NEWS_KEY, JSON.stringify(NEWS)); }
+    function saveNews(){
+      try{
+        localStorage.setItem(NEWS_KEY, JSON.stringify(NEWS));
+      }catch(error){
+        showAlert(
+          'Слишком тяжёлые файлы',
+          'Браузер не смог сохранить новость. Видео сохраняются только до перезагрузки страницы. Для постоянного хранения роликов нужен сервер.'
+        );
+        throw error;
+      }
+    }
     function saveRequests(){ localStorage.setItem(REQUESTS_KEY, JSON.stringify(NEWS_REQUESTS)); }
     function escapeHtml(str){ return String(str ?? '').replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s])); }
     function showAlert(title, text){
@@ -379,13 +579,124 @@
       });
     }
 
-    async function readManyFiles(files){
+    
+
+    function isDataUrlVideo(src){
+      return String(src || '').startsWith('data:video/');
+    }
+
+    function normalizeMediaItem(item){
+      if(!item) return null;
+      if(typeof item === 'string'){
+        return {type:isDataUrlVideo(item) ? 'video' : 'image', src:item};
+      }
+      return item;
+    }
+
+    function normalizeMediaList(list){
+      return (list || []).map(normalizeMediaItem).filter(Boolean);
+    }
+
+    function readVideoAsDataURL(file){
+      return new Promise((resolve, reject)=>{
+        const url = URL.createObjectURL(file);
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = ()=>{
+          if(video.duration > 300){
+            URL.revokeObjectURL(url);
+            reject(new Error('Видео должно быть не длиннее 5 минут.'));
+            return;
+          }
+
+          // ВАЖНО: видео не кладём в localStorage как base64.
+          // Иначе браузер превышает лимит хранилища и кнопка сохранения "не работает".
+          resolve({
+            type:'video',
+            src:url,
+            name:file.name || 'video',
+            temporary:true
+          });
+        };
+
+        video.onerror = ()=>{
+          URL.revokeObjectURL(url);
+          reject(new Error('Не удалось прочитать видео.'));
+        };
+
+        video.src = url;
+      });
+    }
+
+    async function readMediaFile(file){
+      if(!file) return null;
+
+      if(file.type && file.type.startsWith('video/')){
+        return await readVideoAsDataURL(file);
+      }
+
+      if(file.type === 'image/gif'){
+        const data = await readFileAsDataURL(file);
+        return {type:'image', src:data, name:file.name || 'gif'};
+      }
+
+      const data = await compressImage(file);
+      return {type:'image', src:data, name:file.name || 'image'};
+    }
+
+
+async function compressImage(file, maxSize = 900){
+  return new Promise(resolve=>{
+    const img = new Image();
+    const reader = new FileReader();
+
+    reader.onload = e => img.src = e.target.result;
+
+    img.onload = ()=>{
+      const canvas = document.createElement('canvas');
+      let width = img.width;
+      let height = img.height;
+
+      if(width > height){
+        if(width > maxSize){
+          height *= maxSize / width;
+          width = maxSize;
+        }
+      } else {
+        if(height > maxSize){
+          width *= maxSize / height;
+          height = maxSize;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+      resolve(dataUrl);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+async function readManyFiles(files){
       const arr = Array.from(files || []).slice(0,9);
       const result = [];
+
       for(const file of arr){
-        const data = await readFileAsDataURL(file);
-        if(data) result.push(data);
+        try{
+          const data = await readMediaFile(file);
+          if(data) result.push(data);
+        }catch(error){
+          alert(error.message || 'Не удалось добавить файл.');
+        }
       }
+
       return result;
     }
 
@@ -394,27 +705,44 @@
     function renderCards(){
       emptyNews.style.display = NEWS.length ? 'none' : 'block';
       grid.innerHTML = NEWS.map((n,i)=>`
-        <button class="news-card" onclick="openNews(${i})">
+        <article class="news-card" role="button" tabindex="0" onclick="openNews(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNews(${i});}">
           <img class="news-thumb" src="${n.cover || placeholder(n.title)}" alt="${escapeHtml(n.title)}" onerror="imgError(this,'${escapeHtml(n.title)}','📰')">
           <span class="news-date">${escapeHtml(n.date || '')}</span>
           <h3>${escapeHtml(n.title)}</h3>
           <p>${escapeHtml((n.text || '').slice(0,130))}${(n.text || '').length > 130 ? '...' : ''}</p>
           <div class="tag-row"><span class="tag">${escapeHtml(n.author || 'Автор')}</span></div>
           <div class="news-card-actions"><span class="btn gold" onclick="event.stopPropagation();openNews(${i})">Открыть</span></div>
-        </button>
+        </article>
       `).join('');
     }
 
+
+    function renderMediaGallery(mediaList){
+      return normalizeMediaList(mediaList).map((media, index)=>{
+        const src = escapeHtml(media.src || '');
+        if(media.type === 'video'){
+          return `<div class="media-thumb-wrap" data-media-index="${index}"><video class="media-thumb" src="${src}" muted playsinline></video><span class="media-play-badge">▶</span></div>`;
+        }
+        return `<img class="media-thumb" data-media-index="${index}" src="${src}" alt="Дополнительное изображение">`;
+      }).join('');
+    }
+
     function openNews(index, fromRequest=false){
+      index = Number(index);
+      const n = NEWS[index];
+      if(!n) return;
+
       currentOpenNewsIndex = index;
       previewingRequest = !!fromRequest;
-      const n = NEWS[index];
+      currentOpenMediaList = normalizeMediaList(n.extraImages || []);
+
       document.getElementById('modalCover').src = n.cover || placeholder(n.title);
       document.getElementById('modalTitle').textContent = n.title;
       document.getElementById('modalTags').innerHTML = `<span class="news-date">${escapeHtml(n.date || '')}</span><span class="tag">${escapeHtml(n.author || 'Автор')}</span>`;
       document.getElementById('modalText').innerHTML = String(n.text || '').split('\n').filter(Boolean).map(p=>`<p>${escapeHtml(p)}</p>`).join('');
-      document.getElementById('modalGallery').innerHTML = (n.extraImages || []).map(src=>`<img src="${src}" alt="Дополнительное изображение">`).join('') || '<p class="slot-note">Дополнительных изображений нет.</p>';
-      document.getElementById('modalAdminActions').innerHTML = previewingRequest ? '' : '<button class="btn danger" onclick="deletePublishedNews()">Удалить новость</button>';
+      document.getElementById('modalGallery').innerHTML = renderMediaGallery(currentOpenMediaList) || '<p class="slot-note">Дополнительных изображений нет.</p>';
+      document.getElementById('modalAdminActions').innerHTML = previewingRequest ? '' : '<button class="btn gold" onclick="editPublishedNews()">Редактировать</button><button class="btn danger" onclick="deletePublishedNews()">Удалить новость</button>';
+
       newsModal.classList.add('show');
       newsModal.classList.add('news-modal-top');
       newsModal.setAttribute('aria-hidden','false');
@@ -424,6 +752,7 @@
     function closeModal(modal){
       modal.classList.remove('show');
       modal.classList.remove('news-modal-top');
+      modal.style.zIndex = '';
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow='';
     }
@@ -440,13 +769,35 @@
       selectedExtras = [];
     }
 
-    function openForm(mode){
+    function openForm(mode, editIndex = null){
       formMode = mode;
+      editingNewsIndex = editIndex;
       clearForm();
-      document.getElementById('formTitle').textContent = mode === 'create' ? 'Создать новость' : 'Предложить новость';
-      document.getElementById('formEyebrow').textContent = mode === 'create' ? '✦ Админ-публикация' : '✦ Предложение новости';
-      document.getElementById('submitNewsForm').textContent = mode === 'create' ? 'Разместить новость' : 'Отправить заявку';
+
+      const isEdit = mode === 'edit';
+      const item = isEdit ? NEWS[editIndex] : null;
+
+      document.getElementById('formTitle').textContent = isEdit ? 'Редактировать новость' : (mode === 'create' ? 'Создать новость' : 'Предложить новость');
+      document.getElementById('formEyebrow').textContent = isEdit ? '✦ Редактирование' : (mode === 'create' ? '✦ Админ-публикация' : '✦ Предложение новости');
+      document.getElementById('submitNewsForm').textContent = isEdit ? 'Сохранить изменения' : (mode === 'create' ? 'Разместить новость' : 'Отправить заявку');
+
+      if(item){
+        document.getElementById('newsTitleInput').value = item.title || '';
+        document.getElementById('newsAuthorInput').value = item.author || '';
+        document.getElementById('newsTextInput').value = item.text || '';
+        selectedCover = item.cover || '';
+        selectedExtras = normalizeMediaList(item.extraImages || []);
+
+        const img = document.getElementById('coverPreview');
+        if(selectedCover){
+          img.src = selectedCover;
+          img.style.display = 'block';
+        }
+      }
+
       formModal.classList.add('show');
+      formModal.classList.add('news-modal-top');
+      formModal.style.zIndex = '26000';
       formModal.setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
     }
@@ -470,16 +821,41 @@
         extraImages: selectedExtras
       };
 
-      if(formMode === 'create'){
-        NEWS.unshift(item);
-        saveNews();
-        renderCards();
-        closeModal(formModal);
-      } else {
-        NEWS_REQUESTS.unshift(item);
-        saveRequests();
-        closeModal(formModal);
-        alert('Заявка отправлена');
+      try{
+        if(formMode === 'edit'){
+          if(editingNewsIndex !== null && NEWS[editingNewsIndex]){
+            const oldItem = NEWS[editingNewsIndex];
+            NEWS[editingNewsIndex] = {
+              ...oldItem,
+              ...item,
+              id: oldItem.id || item.id,
+              date: oldItem.date || item.date
+            };
+            saveNews();
+            renderCards();
+            closeModal(formModal);
+            if(newsModal.classList.contains('show')) openNews(editingNewsIndex);
+            showAlert('Готово', 'Новость обновлена.');
+          }
+        } else if(formMode === 'create'){
+          NEWS.unshift(item);
+          try{
+            saveNews();
+          }catch(error){
+            NEWS.shift();
+            throw error;
+          }
+          renderCards();
+          closeModal(formModal);
+          showAlert('Готово', 'Новость размещена.');
+        } else {
+          NEWS_REQUESTS.unshift(item);
+          saveRequests();
+          closeModal(formModal);
+          alert('Заявка отправлена');
+        }
+      }catch(error){
+        console.error(error);
       }
     }
 
@@ -568,6 +944,12 @@
       currentOpenNewsIndex = null;
     }
 
+function editPublishedNews(){
+      if(currentOpenNewsIndex === null || previewingRequest) return;
+      openForm('edit', currentOpenNewsIndex);
+      formModal.style.zIndex = '26000';
+    }
+
 function deletePublishedNews(){ confirmMode = 'news'; openConfirm('Удалить новость?', 'Новость будет удалена из ленты.'); }
 
     document.getElementById('openCreateNews').addEventListener('click',()=>openForm('create'));
@@ -590,6 +972,9 @@ function deletePublishedNews(){ confirmMode = 'news'; openConfirm('Удалит�
 
     document.getElementById('newsExtraInput').addEventListener('change', async e=>{
       selectedExtras = await readManyFiles(e.target.files);
+      if(selectedExtras.length){
+        showAlert('Готово', 'Медиа добавлены: ' + selectedExtras.length);
+      }
     });
 
     document.getElementById('submitNewsForm').addEventListener('click',submitForm);
@@ -606,15 +991,69 @@ function deletePublishedNews(){ confirmMode = 'news'; openConfirm('Удалит�
     document.addEventListener('keydown',e=>{
       if(e.key==='Escape'){
         [newsModal, formModal, requestsModal].forEach(m=>m.classList.contains('show') && closeModal(m));
+        closeNewsImage();
       }
     });
 
+
+    function openNewsImage(src, type='image'){
+      const viewer = document.getElementById('newsImageViewer');
+      const img = document.getElementById('newsImageViewerImg');
+      const video = document.getElementById('newsImageViewerVideo');
+      if(!viewer || !img || !video) return;
+
+      img.style.display = 'none';
+      video.style.display = 'none';
+      img.src = '';
+      video.pause();
+      video.removeAttribute('src');
+
+      if(type === 'video' || String(src).startsWith('data:video/')){
+        video.src = src;
+        video.style.display = 'block';
+      } else {
+        img.src = src;
+        img.style.display = 'block';
+      }
+
+      viewer.classList.add('show');
+      viewer.setAttribute('aria-hidden','false');
+    }
+
+    function closeNewsImage(){
+      const viewer = document.getElementById('newsImageViewer');
+      const img = document.getElementById('newsImageViewerImg');
+      const video = document.getElementById('newsImageViewerVideo');
+      if(!viewer || !img || !video) return;
+      viewer.classList.remove('show');
+      viewer.setAttribute('aria-hidden','true');
+      img.src = '';
+      video.pause();
+      video.removeAttribute('src');
+    }
+
+
+    document.getElementById('modalGallery')?.addEventListener('click', e=>{
+      const target = e.target.closest('[data-media-index]');
+      if(!target) return;
+      const media = currentOpenMediaList[Number(target.dataset.mediaIndex)];
+      if(!media) return;
+      openNewsImage(media.src, media.type);
+    });
+
+    document.getElementById('newsImageViewerClose')?.addEventListener('click', closeNewsImage);
+    document.getElementById('newsImageViewer')?.addEventListener('click', e=>{
+      if(e.target.id === 'newsImageViewer') closeNewsImage();
+    });
+
+    window.openNewsImage = openNewsImage;
     window.openNews = openNews;
     window.imgError = imgError;
     window.approveRequest = approveRequest;
     window.deleteRequest = deleteRequest;
     window.previewRequest = previewRequest;
     window.deletePublishedNews = deletePublishedNews;
+    window.editPublishedNews = editPublishedNews;
 
     renderCards();
   </script><script>

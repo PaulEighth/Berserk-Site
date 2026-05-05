@@ -434,7 +434,7 @@
     <a href="BerserHeroesOnline.html">О сайте</a>
     <a class="active" href="deck-builder_checked.html">База карт</a>
     <a href="decks_select_publish.html#deck">Колоды</a>
-    <a href="meta.html#meta">Мета</a>
+    <a href="meta.html#meta">(Мета тех.работа)</a>
     <a href="tournaments.html">Турниры</a>
     <a href="news.html">Новости</a>
     <a href="BerserHeroesOnline.html#contacts">Контакты</a>
@@ -460,7 +460,7 @@
     <div class="filters-title"><h2>Фильтры</h2><button class="btn ghost" id="resetFilters">Сбросить все</button></div>
     <div class="filters-grid">
       <label><span class="filter-label">Название</span><input class="field" id="nameFilter" type="search" placeholder="Например: дракон"></label>
-      <label><span class="filter-label">Текст</span><input class="field" id="textFilter" type="search" placeholder="% между словами, например: найм%при этом"></label>
+      <label><span class="filter-label">Текст</span><input class="field" id="textFilter" type="search" placeholder="Например: найм"></label>
       <div class="cost-filter-box">
         <span class="filter-label">Золото</span>
         <div class="cost-chips" id="costChips" aria-label="Фильтр стоимости">
@@ -639,6 +639,99 @@
       return DEFAULT_MAX_COPIES;
     }
 
+    function getSelectedHero(){
+      return deck.find(isHeroCard) || null;
+    }
+
+    function normalizeRuleArray(value){
+      return toArray(value).map(v => String(v).trim()).filter(Boolean);
+    }
+
+    function getDefaultAllowedElements(hero){
+      return [...new Set([...(hero?.elements || []), 'neutral'])];
+    }
+
+    function canCardBeUsedWithHero(card, hero){
+      if(!card) return false;
+      if(!hero) return true;
+
+      // Когда герой уже выбран, в базе оставляем только его самого из героев.
+      if(isHeroCard(card)) return String(card.id) === String(hero.id);
+
+      const rules = hero.deckRules || { mode: 'elements' };
+
+      if(rules.mode === 'all') return true;
+
+      const allowedCards = normalizeRuleArray(rules.allowedCards);
+      const bannedCards = normalizeRuleArray(rules.bannedCards);
+
+      if(bannedCards.includes(String(card.id))) return false;
+      if(allowedCards.includes(String(card.id))) return true;
+
+      const allowedElements =
+        rules.mode === 'custom' && rules.allowedElements
+          ? normalizeRuleArray(rules.allowedElements).map(normalizeElement)
+          : getDefaultAllowedElements(hero);
+
+      if(allowedElements.length){
+        const okElement = (card.elements || []).some(e => allowedElements.includes(e));
+        if(!okElement) return false;
+      }
+
+      const allowedTypes = normalizeRuleArray(rules.allowedTypes);
+      if(allowedTypes.length && !allowedTypes.includes(card.typeId)) return false;
+
+      const forbiddenTypes = normalizeRuleArray(rules.forbiddenTypes);
+      if(forbiddenTypes.length && forbiddenTypes.includes(card.typeId)) return false;
+
+      if(typeof rules.maxCost === 'number' && !isHeroCard(card) && Number(card.cost) > rules.maxCost) return false;
+      if(typeof rules.minCost === 'number' && !isHeroCard(card) && Number(card.cost) < rules.minCost) return false;
+
+      const textIncludes = normalizeRuleArray(rules.textIncludes);
+      if(textIncludes.length){
+        const text = String(card.text || '').toLowerCase();
+        const okText = textIncludes.some(word => text.includes(String(word).toLowerCase()));
+        if(!okText) return false;
+      }
+
+      return true;
+    }
+
+    function invalidCardsForHero(hero){
+      if(!hero) return [];
+      return deck.filter(card => !isHeroCard(card) && !canCardBeUsedWithHero(card, hero));
+    }
+
+    function getDeckMainElement(){
+      for(const card of deck){
+        if(isHeroCard(card)) continue;
+        const element = (card.elements || []).find(e => e !== 'neutral');
+        if(element) return element;
+      }
+      return null;
+    }
+
+    function canCardBeUsedBeforeHero(card){
+      if(!card) return false;
+
+      // Если герой ещё не выбран, но в колоде уже есть карты одной стихии,
+      // показываем только тех героев, которые смогут играть с уже выбранными картами.
+      // Например: взяли карту Гор -> герои Тьмы/Леса скрываются, герой Гор остаётся.
+      if(isHeroCard(card)){
+        return invalidCardsForHero(card).length === 0;
+      }
+
+      const mainElement = getDeckMainElement();
+      if(!mainElement) return true;
+
+      return (card.elements || []).some(e => e === mainElement || e === 'neutral');
+    }
+
+    function canCardBeUsedByCurrentDeck(card){
+      const hero = getSelectedHero();
+      return hero ? canCardBeUsedWithHero(card, hero) : canCardBeUsedBeforeHero(card);
+    }
+
     function validateDeckForCreate(){
       const cardsOnlyCount = deckCardCount();
       const heroes = deck.filter(isHeroCard);
@@ -647,6 +740,13 @@
       if(heroes.length > 1) return 'В колоде может быть только один герой.';
       if(cardsOnlyCount < MIN_DECK) return 'Не хватает карт. Нужно минимум 40 карт + 1 герой.';
       if(cardsOnlyCount > MAX_DECK) return 'Карт слишком много. Максимум 60 карт + 1 герой.';
+
+      const hero = heroes[0];
+      const invalidCards = invalidCardsForHero(hero);
+      if(invalidCards.length){
+        return 'В колоде есть карты, которые не подходят к выбранному герою: ' + invalidCards.slice(0,3).map(c => c.name).join(', ') + (invalidCards.length > 3 ? '...' : '');
+      }
+
       const counts = {};
       for(const card of deck){
         counts[card.id] = (counts[card.id] || 0) + 1;
@@ -662,7 +762,7 @@
 
     function openCreateDeckModal(){
       const error = validateDeckForCreate();
-      if(error){ alert(error); return; }
+      if(error){ showCustomAlert(error); return; }
       $('createdDeckTitle').value='';
       $('createdDeckDescription').value='';
       $('createDeckModal').classList.add('show');
@@ -680,13 +780,13 @@
       const description = $('createdDeckDescription').value.trim();
 
       if(!title){
-        alert('Введите название колоды.');
+        showCustomAlert('Введите название колоды.');
         $('createdDeckTitle').focus();
         return;
       }
 
       const error = validateDeckForCreate();
-      if(error){ alert(error); return; }
+      if(error){ showCustomAlert(error); return; }
 
       const playerDecks = JSON.parse(localStorage.getItem('bhoPlayerDecksV1') || '[]');
       const newDeck = {
@@ -764,7 +864,7 @@
     function getCardType(card){return card.type || card.class || card.classes || card.category || 'Не указан'}
     function getCardSet(card){const sets=toArray(card.sets ?? card.set ?? card.pack ?? card.edition);return sets[0] || 'Без сета'}
     function getNum(card, keys, fallback=0){for(const k of keys){if(card[k]!==undefined && card[k]!==null && card[k]!==''){const n=Number(card[k]);return Number.isFinite(n)?n:fallback}}return fallback}
-    function normalizeCard(card,index){const id=card.id ?? index+1;const rawElements=toArray(card.elements ?? card.element ?? card['стихия']);return {id,name:card.name||card.title||('Карта '+id),type:String(getCardType(card)),typeId:normalizeTypeId(getCardType(card)),rarity:normalizeRarity(card.rarity||card['редкость']||card.rare||''),cost:getNum(card,['cost','price','mana','energy'],0),attack:getNum(card,['attack','atk','power'],0),health:getNum(card,['health','hp','life'],0),elements:rawElements.map(normalizeElement),set:getCardSet(card),text:card.text||card.description||card.ability||'',image:card.image||('Images/'+id+'.png')}}
+    function normalizeCard(card,index){const id=card.id ?? index+1;const rawElements=toArray(card.elements ?? card.element ?? card['стихия']);return {id,name:card.name||card.title||('Карта '+id),type:String(getCardType(card)),typeId:normalizeTypeId(getCardType(card)),rarity:normalizeRarity(card.rarity||card['редкость']||card.rare||''),cost:getNum(card,['cost','price','mana','energy'],0),attack:getNum(card,['attack','atk','power'],0),health:getNum(card,['health','hp','life'],0),elements:rawElements.map(normalizeElement),set:getCardSet(card),text:card.text||card.description||card.ability||'',image:card.image||('Images/'+id+'.png'),deckRules:card.deckRules||null}}
 
     function createFallbackCards(count=300){const types=['Герой','Существо','Магия','Артефакт','Событие'];const sets=['Основной сет','Промо','Турнирный','Тьма'];return Array.from({length:count},(_,i)=>{const id=i+1;const el=ELEMENTS[i%ELEMENTS.length].id;const second=(i%7===0)?ELEMENTS[(i+3)%ELEMENTS.length].id:null;return {id,name:'Карта '+id,type:types[i%types.length],cost:(i%9)+1,attack:i%8,health:(i%10)+1,elements:second?[el,second]:[el],set:sets[i%sets.length],text:'Тестовый текст карты '+id+'. Можно заменить данными из cards.json.',rarity:RARITIES[i%RARITIES.length].id,image:'images/'+id+'.png'}})}
 
@@ -825,7 +925,7 @@
       if(selectedCosts.has('7+') && n >= 7) return true;
       return selectedCosts.has(String(n));
     }
-    function applyFilters(){const name=$('nameFilter').value;const text=$('textFilter').value;const set=$('setFilter').value;filteredCards=cards.filter(card=>{const matchesName=matchesTextPattern(card.name,name);const matchesText=matchesTextPattern(card.text,text);const matchesSet=set==='all'||card.set===set;const matchesCost=matchesCostChips(card.cost, card);const matchesAttack=inRange(card.attack,'attackMin','attackMax');const matchesHealth=inRange(card.health,'healthMin','healthMax');const matchesElements=selectedElements.size===0||card.elements.some(e=>selectedElements.has(e));const matchesRarity=selectedRarities.size===0||selectedRarities.has(card.rarity);const matchesCardType=selectedTypes.size===0||selectedTypes.has(card.typeId);const matchesMulti=!multiOnly||card.elements.length>1;return matchesName&&matchesText&&matchesSet&&matchesCost&&matchesAttack&&matchesHealth&&matchesElements&&matchesRarity&&matchesCardType&&matchesMulti});currentPage=1;renderCards();updateStats()}
+    function applyFilters(){const name=$('nameFilter').value;const text=$('textFilter').value;const set=$('setFilter').value;filteredCards=cards.filter(card=>{const matchesName=matchesTextPattern(card.name,name);const matchesText=matchesTextPattern(card.text,text);const matchesSet=set==='all'||card.set===set;const matchesCost=matchesCostChips(card.cost, card);const matchesAttack=inRange(card.attack,'attackMin','attackMax');const matchesHealth=inRange(card.health,'healthMin','healthMax');const matchesElements=selectedElements.size===0||card.elements.some(e=>selectedElements.has(e));const matchesRarity=selectedRarities.size===0||selectedRarities.has(card.rarity);const matchesCardType=selectedTypes.size===0||selectedTypes.has(card.typeId);const matchesMulti=!multiOnly||card.elements.length>1;const matchesDeckRules=canCardBeUsedByCurrentDeck(card);return matchesName&&matchesText&&matchesSet&&matchesCost&&matchesAttack&&matchesHealth&&matchesElements&&matchesRarity&&matchesCardType&&matchesMulti&&matchesDeckRules});currentPage=1;renderCards();updateStats()}
 
     function elementIcons(card){return (card.elements||[]).map(id=>ELEMENTS.find(e=>e.id===id)?.icon || '✦').join(' ')}
     function mainElement(card){return (card.elements && card.elements[0]) ? card.elements[0] : 'neutral'}
@@ -873,10 +973,35 @@
       $('cardsMeta').textContent=`Показано ${pageCards.length} из ${filteredCards.length} найденных карт`;
     }
     function addCard(id){
-      const card=cards.find(c=>c.id===id);
+      const card=cards.find(c=>String(c.id)===String(id));
       if(!card)return;
-      if(!isHeroCard(card) && deckCardCount()>=MAX_DECK){showToast('Карт слишком много. Максимум — '+MAX_DECK+' карт + 1 герой');return}
+
+      const hero=getSelectedHero();
+
       if(isHeroCard(card) && deck.some(isHeroCard)){showToast('В колоде может быть только один герой');return}
+
+      if(isHeroCard(card)){
+        const invalidCards = invalidCardsForHero(card);
+        if(invalidCards.length){
+          showToast('Сначала уберите карты, которые не подходят этому герою');
+          return;
+        }
+      }
+
+      if(hero && !canCardBeUsedWithHero(card, hero)){
+        showToast('Эта карта не подходит к выбранному герою');
+        return;
+      }
+
+      if(!hero && !canCardBeUsedBeforeHero(card)){
+        const mainElement = getDeckMainElement();
+        const mainElementName = ELEMENTS.find(e => e.id === mainElement)?.name || mainElement;
+        showToast('До выбора героя можно брать только ' + mainElementName + ' + нейтральные карты');
+        return;
+      }
+
+      if(!isHeroCard(card) && deckCardCount()>=MAX_DECK){showToast('Карт слишком много. Максимум — '+MAX_DECK+' карт + 1 герой');return}
+
       const copies=deck.filter(c=>String(c.id)===String(id)).length;
       const limit=maxCopiesForCard(card);
       if(copies>=limit){
@@ -885,9 +1010,9 @@
         else showToast('Лимит копий: '+DEFAULT_MAX_COPIES);
         return;
       }
-      deck.push(card);saveDeck();renderDeck();renderCards();updateStats();showToast('Добавлено: '+card.name)
+      deck.push(card);saveDeck();renderDeck();applyFilters();updateStats();showToast('Добавлено: '+card.name)
     }
-    function removeCard(index){deck.splice(index,1);saveDeck();renderDeck();renderCards();updateStats();showToast('Карта удалена')}
+    function removeCard(index){deck.splice(index,1);saveDeck();renderDeck();applyFilters();updateStats();showToast('Карта удалена')}
     function removeCardById(id){
       const index=deck.findIndex(card=>String(card.id)===String(id));
       if(index===-1)return;
@@ -921,6 +1046,7 @@
 
   
 <div class="deck-controls">
+  <button class="count-btn" onclick="addCard('${escapeHtml(card.id)}')" title="Добавить одну копию">+</button>
   <span class="count-number">${count}x</span>
   <button class="remove" onclick="removeCardById('${escapeHtml(card.id)}')" title="Удалить одну копию">×</button>
 </div>
@@ -943,7 +1069,7 @@
     $('resetFilters').addEventListener('click',()=>{['nameFilter','textFilter','attackMin','attackMax','healthMin','healthMax'].forEach(id=>$(id).value='');$('setFilter').value='all';selectedElements.clear();selectedRarities.clear();selectedTypes.clear();selectedCosts.clear();selectedCosts.clear();document.querySelectorAll('.element-chip,.rarity-chip,.type-chip,.cost-chip,.cost-chip').forEach(b=>b.classList.remove('active'));multiOnly=false;$('multiToggle').classList.remove('active');applyFilters()});
     $('prevPage').addEventListener('click',()=>{if(currentPage>1){currentPage--;renderCards();window.scrollTo({top:0,behavior:'smooth'})}});
     $('nextPage').addEventListener('click',()=>{const totalPages=Math.ceil(filteredCards.length/PAGE_SIZE);if(currentPage<totalPages){currentPage++;renderCards();window.scrollTo({top:0,behavior:'smooth'})}});
-    $('clearDeck').addEventListener('click',()=>{showConfirm('Очистить всю колоду?',()=>{deck=[];saveDeck();renderDeck();renderCards();updateStats();showToast('Колода очищена')})});
+    $('clearDeck').addEventListener('click',()=>{showConfirm('Очистить всю колоду?',()=>{deck=[];saveDeck();renderDeck();applyFilters();updateStats();showToast('Колода очищена')})});
     $('createDeck').addEventListener('click',openCreateDeckModal);
     $('confirmCreateDeck').addEventListener('click',createDeck);
     $('cancelCreateDeck').addEventListener('click',closeCreateDeckModal);

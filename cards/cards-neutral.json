@@ -7,7 +7,10 @@
     "attack": 0,
     "health": 30,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
+    "deckRules": {
+  "mode": "all"
+},
     "set": "Основной",
     "text": "Герой-воин\nВы можете положить в колоду карты любой стихии. Ваши стихийные карты стоят на 1🪙 дороже",
     "image": "Images/Нейтралы/Хигарт.png"
@@ -20,7 +23,7 @@
     "attack": 0,
     "health": 1,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Заплатите дополнительно X🪙. Получает такой бонус к удару и жизням",
     "image": "Images/Нейтралы/Вольный воитель.png"
@@ -33,7 +36,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Зверь\nВ начале вашего хода верните ваше случайное существо в руку",
     "image": "Images/Нейтралы/Амбрадор.png"
@@ -46,7 +49,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Страж леса\nЗащита от отравления\nЗащита от атак карт Болот",
     "image": "Images/Нейтралы/Благотворец.png"
@@ -59,7 +62,7 @@
     "attack": 0,
     "health": 1,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Пустой\nНе получает ран\nУникальность",
     "image": "Images/Нейтралы/Глашатай пустоты.png"
@@ -72,7 +75,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Дух\nНайм - Потеряйте 1🪙",
     "image": "Images/Нейтралы/Дух Эллиона.png"
@@ -85,7 +88,7 @@
     "attack": 0,
     "health": 1,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nРывок\nУникальность\n⬇️ - Получите 1🪙 до конца хода",
     "image": "Images/Нейтралы/Кьелэрн.png"
@@ -98,7 +101,7 @@
     "attack": 2,
     "health": 1,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Посмотрите верхнюю карту колоды противника, вы можете положить эту карту на кладбище противника",
     "image": "Images/Нейтралы/Мастер теней.png"
@@ -111,7 +114,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Зверь\nКогда в ваш ход первый раз погибает другое ваше существо, раньте существо противника на 2",
     "image": "Images/Нейтралы/Падальщик пустоши.png"
@@ -124,7 +127,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Амулет\nНайм - Каждый игрок получает 1🪙\nГибель - Каждый игрок теряет 1🪙",
     "image": "Images/Нейтралы/Путь праведников.png"
@@ -137,7 +140,7 @@
     "attack": 4,
     "health": 5,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nТрюкач стоит на 1🪙 дороже за каждую другую карту у вас в руке",
     "image": "Images/Нейтралы/Трюкач.png"
@@ -150,7 +153,7 @@
     "attack": 1,
     "health": 1,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Поиск существа стоимостью 2🪙",
     "image": "Images/Нейтралы/Шаман племени Ворона.png"
@@ -163,7 +166,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\n⬇️ - Излечите открытого персонажа на 4, закройте его",
     "image": "Images/Нейтралы/Адепт белого ордена.png"
@@ -176,7 +179,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Амулет\nВ начале вашего хода вы можете потерять X🪙 чтобы уничтожить всех существ этой стоимости или менее",
     "image": "Images/Нейтралы/Аль-Койар.png"
@@ -189,7 +192,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nЗащита от атак карт Тьмы",
     "image": "Images/Нейтралы/Бич нежити.png"
@@ -202,7 +205,7 @@
     "attack": 1,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Излечите существо на 2, оно получает +1 к удару до конца хода",
     "image": "Images/Нейтралы/Виата.png"
@@ -215,7 +218,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Дух\nУклонение от заклинаний\nСущества стоят на 1🪙 дороже",
     "image": "Images/Нейтралы/Видение долины.png"
@@ -228,7 +231,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Уничтожьте существо, если на поле есть другое существо с таким же названием",
     "image": "Images/Нейтралы/Видящая.png"
@@ -241,7 +244,7 @@
     "attack": 3,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nЗащита от выстрелов\nЗащита от атак карт Лесов",
     "image": "Images/Нейтралы/Воин ночи.png"
@@ -254,7 +257,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Заплатите дополнительно X🪙, Поиск существа этой стоимости или меньше",
     "image": "Images/Нейтралы/Джокер.png"
@@ -267,7 +270,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nЗащита от атак существ стоимостью 5🪙 или более",
     "image": "Images/Нейтралы/Драконоборец.png"
@@ -280,7 +283,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Поиск нейтральной карты",
     "image": "Images/Нейтралы/Карта сокровищ.png"
@@ -293,7 +296,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Противник разыгрывает существо стоимостью 2🪙 или менее по его выбору",
     "image": "Images/Нейтралы/Кондотьер.png"
@@ -306,7 +309,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Тоа-Дан\nЗащита от выстрелов\nЗаклинания стоят на 1🪙 дороже",
     "image": "Images/Нейтралы/Магистр элементов.png"
@@ -319,7 +322,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nНаправленный удар\nРывок",
     "image": "Images/Нейтралы/Найтин.png"
@@ -332,7 +335,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар",
     "image": "Images/Нейтралы/Паломник.png"
@@ -345,7 +348,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Раньте персонажа на 1 за каждую другую разыгранную в этот ход карту",
     "image": "Images/Нейтралы/Покаяние.png"
@@ -358,7 +361,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nЗащита от атак существ стоимостью 2🪙 или менее",
     "image": "Images/Нейтралы/Тарантул.png"
@@ -371,7 +374,7 @@
     "attack": 2,
     "health": 2,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nРывок\nГибель - Другое существо получает Рывок",
     "image": "Images/Нейтралы/Федаин.png"
@@ -384,7 +387,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - существо получает Опыт в атаке или Опыт в защите",
     "image": "Images/Нейтралы/Эктор.png"
@@ -397,7 +400,7 @@
     "attack": 0,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Подземник\nРывок\n⬇️ - Выстрел 1",
     "image": "Images/Нейтралы/Юркий гоблин.png"
@@ -410,7 +413,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Можете уничтожить 1 экипировку",
     "image": "Images/Нейтралы/Брат по оружию.png"
@@ -423,7 +426,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Оружие\n⬇️ - Закройте вашего героя, откройте существо",
     "image": "Images/Нейтралы/Бьерсард.png"
@@ -436,7 +439,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nУклонение от заклинаний\nЗащита от атак карт Гор",
     "image": "Images/Нейтралы/Воин надежды.png"
@@ -449,7 +452,7 @@
     "attack": 1,
     "health": 4,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Гном\nНайм - Поиск экипировки",
     "image": "Images/Нейтралы/Гном-кузнец.png"
@@ -462,7 +465,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nЕсли существо противника использовало выстрел, в начале вашего хода выстреливает по персонажу противника с силой, равной полученным от того выстрела ранам",
     "image": "Images/Нейтралы/Горец.png"
@@ -475,7 +478,7 @@
     "attack": 3,
     "health": 1,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nНаправленный удар\nРывок",
     "image": "Images/Нейтралы/Катакама.png"
@@ -488,7 +491,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Получите 3🪙 до конца хода",
     "image": "Images/Нейтралы/Мародер.png"
@@ -501,7 +504,7 @@
     "attack": 1,
     "health": 4,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм — Заклинания в руке каждого игрока становятся на 1🪙 дороже",
     "image": "Images/Нейтралы/Медиум.png"
@@ -514,7 +517,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nОпыт в защите\nМожет выступать защитником 2 раза за ход",
     "image": "Images/Нейтралы/Оруженосец.png"
@@ -527,7 +530,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nГибель - Противник берет карту",
     "image": "Images/Нейтралы/Ренегат.png"
@@ -540,7 +543,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Тролль\nВ конце вашего хода, если у вашего героя больше жизней, чем у героя противника, это существо переходит под контроль противника",
     "image": "Images/Нейтралы/Сапа тихий.png"
@@ -553,7 +556,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Верните ваше раненое существо в руку",
     "image": "Images/Нейтралы/Содалис.png"
@@ -566,7 +569,7 @@
     "attack": 1,
     "health": 1,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Обменяйте другое свое существо на существо противника за ту же стоимость",
     "image": "Images/Нейтралы/Шут.png"
@@ -579,7 +582,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Пират\nРывок\n+2 к удару по герою",
     "image": "Images/Нейтралы/Абордажник.png"
@@ -592,7 +595,7 @@
     "attack": 2,
     "health": 7,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Порождение\nУникальность\nНайм - Другие существа погибают в начале следующего хода владельца этого существа",
     "image": "Images/Нейтралы/Богарт.png"
@@ -605,7 +608,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nЗащита от выстрелов\n⬇️ - Раньте на 2 всех существ с выстреломд",
     "image": "Images/Нейтралы/Варлок.png"
@@ -618,7 +621,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nРывок\nЗащита от карт Степей",
     "image": "Images/Нейтралы/Воин рока.png"
@@ -631,7 +634,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Берите карты, пока в руке не будет столько же карт, сколько у противника",
     "image": "Images/Нейтралы/Гартас.png"
@@ -644,7 +647,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Зверь\nНаправленный удар\nПолностью излечивается, когда убивает существо",
     "image": "Images/Нейтралы/Жжраг.png"
@@ -657,7 +660,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "ultra",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nНайм - Выберите стихию. Все существа этой стихии на поле получают +1 к атакам",
     "image": "Images/Нейтралы/Куратор.png"
@@ -670,7 +673,7 @@
     "attack": 3,
     "health": 6,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nОпыт в защите\nЗащита от первой атаки за ход",
     "image": "Images/Нейтралы/Наемник.png"
@@ -683,7 +686,7 @@
     "attack": 4,
     "health": 5,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник",
     "image": "Images/Нейтралы/Наемник-ветеран.png"
@@ -696,7 +699,7 @@
     "attack": 2,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Уничтожьте существо Тьмы",
     "image": "Images/Нейтралы/Палач инквизиции.png"
@@ -709,7 +712,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Вслепую выберите карту в руке противника. Он сбрасывает эту карту",
     "image": "Images/Нейтралы/Следователь.png"
@@ -722,7 +725,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nГибель - Раньте персонажа на 2д",
     "image": "Images/Нейтралы/Смайта.png"
@@ -735,7 +738,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nСтоит на 1🪙 дешевле за каждую вашу экипировку",
     "image": "Images/Нейтралы/Ученик убийцы.png"
@@ -748,7 +751,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Оглушите героя противника",
     "image": "Images/Нейтралы/Экзарх.png"
@@ -761,7 +764,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\n⬇️ - Раньте всех существ Тьмы на 2, излечите остальных существ на 2",
     "image": "Images/Нейтралы/Экзекутор Заранда.png"
@@ -774,7 +777,7 @@
     "attack": 4,
     "health": 5,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Аккениец\nПервый удар",
     "image": "Images/Нейтралы/Ветеран Тул-Багара.png"
@@ -787,7 +790,7 @@
     "attack": 4,
     "health": 4,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНайм - Получает +1 к удару и Броню 1 за каждое другое ваше существо на поле",
     "image": "Images/Нейтралы/Рыцарь Линнет.png"
@@ -800,7 +803,7 @@
     "attack": 6,
     "health": 3,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\n⬇️ - Другое существо теряет особенности до начала вашего хода, а это существо возвращается в руку",
     "image": "Images/Нейтралы/Шпион Койаров.png"
@@ -813,7 +816,7 @@
     "attack": 5,
     "health": 4,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Наемник\nНаправленный удар\nУклонение от заклинаний\nОткройте после первой атаки",
     "image": "Images/Нейтралы/Берсерк.png"
@@ -826,7 +829,7 @@
     "attack": 3,
     "health": 6,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - Раскопайте карту экипировки",
     "image": "Images/Нейтралы/Архивариус храма.png"
@@ -839,7 +842,7 @@
     "attack": 6,
     "health": 7,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Тролль",
     "image": "Images/Нейтралы/Багряник.png"
@@ -852,7 +855,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nНайм - уничтожьте всю экипировку",
     "image": "Images/Нейтралы/Сдерживающий.png"
@@ -865,7 +868,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Демон\nНайм - Получает Рывок, Направленный удар, Первый удар, Защита от выстрелов, Уклонение от заклинаний и/или Защита от отравления, если на поле есть существа с такими особенностями",
     "image": "Images/Нейтралы/Талос.png"
@@ -878,7 +881,7 @@
     "attack": 5,
     "health": 3,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nЗащита от отравления\nНайм - Уничтожьте существо с 4 или менее жизнями",
     "image": "Images/Нейтралы/Ассасин.png"
@@ -891,7 +894,7 @@
     "attack": 4,
     "health": 7,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Голем\nНайм - Получите 4 до конца хода",
     "image": "Images/Нейтралы/Бессмертный страж.png"
@@ -904,7 +907,7 @@
     "attack": 2,
     "health": 7,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Дракон\nНаправленный удар\nПосле атаки, выберите двух (кроме атакованного) существ противника; отравить одно на 2, другое погибает в нач",
     "image": "Images/Нейтралы/Кнеллервирм.png"
@@ -917,7 +920,7 @@
     "attack": 6,
     "health": 6,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Голем\nГибель - Поиск существа стоимостью 8 или более",
     "image": "Images/Нейтралы/Нимерт.png"
@@ -930,7 +933,7 @@
     "attack": 5,
     "health": 8,
     "rarity": "common",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Инквизитор\nОткрывется в начале хода противника",
     "image": "Images/Нейтралы/Воин храма.png"
@@ -943,7 +946,7 @@
     "attack": 0,
     "health": 15,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Койар\nНайм - Ранит себя на X (максимум 5), получить +1 к удару за каждую такую рану",
     "image": "Images/Нейтралы/Гонец ордена.png"
@@ -956,7 +959,7 @@
     "attack": 6,
     "health": 6,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Голем\nГибель - Поиск копии этого существа; вы можете разыграть ее бесплатно до конца вашего хода",
     "image": "Images/Нейтралы/Живой доспех.png"
@@ -969,7 +972,7 @@
     "attack": 8,
     "health": 6,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Голем\nГибель - Замешивается в колоду",
     "image": "Images/Нейтралы/Паровой голем.png"
@@ -982,7 +985,7 @@
     "attack": 8,
     "health": 8,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Порождение\nСтоит на 2🪙 дешевле за каждую карту, сброшенную на этом ходу",
     "image": "Images/Нейтралы/Страж тумана.png"
@@ -995,7 +998,7 @@
     "attack": 6,
     "health": 6,
     "rarity": "uncommon",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Пират\nСтоит на 1🪙 дешевле за каждую карту в вашей рукеу",
     "image": "Images/Нейтралы/Кутила.png"
@@ -1008,7 +1011,7 @@
     "attack": 5,
     "health": 10,
     "rarity": "rare",
-    "element": "neutral",
+    "elements": ["neutral"],
     "set": "Основной",
     "text": "Зверь\nНе получает ран, кроме ран от ударов",
     "image": "Images/Нейтралы/Феррос.png"

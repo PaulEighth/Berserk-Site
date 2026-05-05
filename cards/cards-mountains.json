@@ -7,7 +7,7 @@
     "attack": 0,
     "health": 30,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Герой-воин\n⬇️Целью первой атаки ударом в ход противника должен быть Бьорнбон; Бьорнбон получает на 1 рану больше от ударов существ до начала вашего следующего хода",
     "image": "Images/Горы/Бьорнбон.png"
@@ -20,7 +20,7 @@
     "attack": 0,
     "health": 25,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Герой-разбойник\n2🪙,⬇️ - Откройте существо, получавшее раны в этот ход; это существо получает +1 к удару за каждую рану на себе до конца хода",
     "image": "Images/Горы/Рангхильда.png"
@@ -33,7 +33,7 @@
     "attack": 0,
     "health": 26,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Герой-маг\n2🪙,⬇️ - Раньте существо на 1\n5🪙,⬇️ - Раньте существо на 2",
     "image": "Images/Горы/Тейа.png"
@@ -46,7 +46,7 @@
     "attack": 0,
     "health": 25,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Герой-воин\n2🪙,⬇️ - Ваше существо получает Броню 1\nБроня 1",
     "image": "Images/Горы/Хродгар.png"
@@ -59,7 +59,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Амулет\nВаши заклинания и способности героя наносят на 1 рану больше",
     "image": "Images/Горы/Амулет послушника.png"
@@ -72,7 +72,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Посмотрите 3 верхние карты вашей колоды - покажите и возьмите карту не существа, замешайте остальные в колоду",
     "image": "Images/Горы/Взгляд в будущее.png"
@@ -85,7 +85,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nИмеет +2 к удару, пока на нем есть раны\nОрда",
     "image": "Images/Горы/Витязь Рагнара.png"
@@ -98,7 +98,7 @@
     "attack": 0,
     "health": 3,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Местность\nНе может атаковать и выступать защитником. После призыва 3 существ одного класса (гномы, Йордлинги, Линунги), превращается в новое существо такого класса",
     "image": "Images/Горы/Горная экспедиция.png"
@@ -111,7 +111,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Оружие\nВаше существо получает +1 к удару до конца хода",
     "image": "Images/Горы/Молот прародителя.png"
@@ -124,7 +124,7 @@
     "attack": 1,
     "health": 1,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\nНайм - Раньте на 3 существо противника без ран",
     "image": "Images/Горы/Нойта.png"
@@ -137,7 +137,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nИмеет Броню равную числу копий этого существа на поле\nОрда",
     "image": "Images/Горы/Подхват.png"
@@ -150,7 +150,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Раньте существо на 3",
     "image": "Images/Горы/Раскат грома.png"
@@ -163,7 +163,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Существо получает Броню 2",
     "image": "Images/Горы/Стальная скорлупа.png"
@@ -176,7 +176,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Жизни существа становятся равны 1",
     "image": "Images/Горы/Шок.png"
@@ -189,7 +189,7 @@
     "attack": 3,
     "health": 1,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nНайм - Закрывается\nБроня 1",
     "image": "Images/Горы/Юркий гном.png"
@@ -202,7 +202,7 @@
     "attack": 0,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Раньте существо на 5",
     "image": "Images/Горы/Выброс силы.png"
@@ -215,7 +215,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nНайм - Раньте X ваших существ на 1, затем Поиск существа стоимостью X🪙",
     "image": "Images/Горы/Андор.png"
@@ -228,7 +228,7 @@
     "attack": 1,
     "health": 4,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nПолучает +1 к удару каждый раз, когда получает раны",
     "image": "Images/Горы/Витязь Викара.png"
@@ -241,7 +241,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном",
     "image": "Images/Горы/Гном-рядовой.png"
@@ -254,7 +254,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\nКогда вы разыгрываете заклинание, можете ранить героя противника на 1",
     "image": "Images/Горы/Иккол.png"
@@ -267,7 +267,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Амулет1\n🪙,⬇️ - Выберите существо противника. Оно не открывается в свой следующий ход",
     "image": "Images/Горы/Ледяной амулет.png"
@@ -280,7 +280,7 @@
     "attack": 1,
     "health": 2,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nНайм - Получает +1 к атаке за каждую рану на ваших существах",
     "image": "Images/Горы/Снордлинг.png"
@@ -293,7 +293,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Поиск карты Гор",
     "image": "Images/Горы/Сфера молний.png"
@@ -306,7 +306,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Зелье\nОткройте существо, оно не открывается в свой следующий ход. Возьмите карту",
     "image": "Images/Горы/Фиал энергии.png"
@@ -319,7 +319,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Жизни всех существ на поле становятся равны 1",
     "image": "Images/Горы/Шоковая волна.png"
@@ -332,7 +332,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Следующее ваше заклинание стоит на 3🪙 дешевле. Возьмите карту",
     "image": "Images/Горы/Волшебный источник.png"
@@ -345,7 +345,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nНайм - Выстрел 2 по существу противника\nЗащита от выстрелов",
     "image": "Images/Горы/Гном-лучник.png"
@@ -358,7 +358,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nУклонение от заклинаний\nРывок",
     "image": "Images/Горы/Гном-смертник.png"
@@ -371,7 +371,7 @@
     "attack": 3,
     "health": 4,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\nВаши заклинания наносят на 2 раны больше",
     "image": "Images/Горы/Повелитель тотемов.png"
@@ -384,7 +384,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nВаши гномы стоят на 1🪙 дешевле",
     "image": "Images/Горы/Рунопевец.png"
@@ -397,7 +397,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nНайм - Существа с ранами получают Первый удар",
     "image": "Images/Горы/Хускарл.png"
@@ -410,7 +410,7 @@
     "attack": 2,
     "health": 4,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nНаправленный удар\nНайм - Существо получает +3 к удару",
     "image": "Images/Горы/Верцверг.png"
@@ -423,7 +423,7 @@
     "attack": 4,
     "health": 2,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nБроня 2\nНайм - Существо получает Броню 2",
     "image": "Images/Горы/Гном-бронник.png"
@@ -436,7 +436,7 @@
     "attack": 1,
     "health": 3,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nБроня 2\n⬇️ - Раньте персонажа на 2",
     "image": "Images/Горы/Гном-каратель.png"
@@ -449,7 +449,7 @@
     "attack": 3,
     "health": 5,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nНаправленный удар\nРывок",
     "image": "Images/Горы/Гном-легионер.png"
@@ -462,7 +462,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном",
     "image": "Images/Горы/Гном-механик.png"
@@ -475,7 +475,7 @@
     "attack": 4,
     "health": 3,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nБроня 2\nЗащита от выстрелов\nОпыт в защите",
     "image": "Images/Горы/Гном-часовой.png"
@@ -488,7 +488,7 @@
     "attack": 3,
     "health": 3,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nБроня 2\nВаши гномы имеют Защиту от выстрелов",
     "image": "Images/Горы/Гном-щитоносец.png"
@@ -501,7 +501,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Оружие\n🪙,⬇️ - Закройте вашего героя; раньте существо на X, где X - количество ран на ваших существах",
     "image": "Images/Горы/Кистень.png"
@@ -514,7 +514,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Раньте существо на 8",
     "image": "Images/Горы/Молния.png"
@@ -527,7 +527,7 @@
     "attack": 2,
     "health": 5,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\n⬇️ - Раньте на 2 и закройте персонажа",
     "image": "Images/Горы/Сагтайн.png"
@@ -540,7 +540,7 @@
     "attack": 5,
     "health": 6,
     "rarity": "rare",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nПока ранен, ваши раненые существа имюет +2 к удару и Броню 1",
     "image": "Images/Горы/Миккель.png"
@@ -553,7 +553,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Оружие\n⬇️ - Оглушите вашего героя; раньте на 3 и оглушите существо",
     "image": "Images/Горы/Молот Снора.png"
@@ -566,7 +566,7 @@
     "attack": 2,
     "health": 3,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\nНайм - Раньте существо противника на 4",
     "image": "Images/Горы/Послушник.png"
@@ -579,7 +579,7 @@
     "attack": 5,
     "health": 6,
     "rarity": "common",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nВаши существа с ранами имеют Опыт в атаке",
     "image": "Images/Горы/Берсерк Викара.png"
@@ -592,7 +592,7 @@
     "attack": 6,
     "health": 5,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Гном\nБроня 3\nДругие ваши гномы имеют Опыт в атаке и Опыт в защите",
     "image": "Images/Горы/Гномий король.png"
@@ -605,7 +605,7 @@
     "attack": 0,
     "health": 0,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Раньте всех существ противника на 3",
     "image": "Images/Горы/Цепная молния.png"
@@ -618,7 +618,7 @@
     "attack": 5,
     "health": 6,
     "rarity": "uncommon",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Йордлинг\nКогда это существо получает раны, раньте другое существо на это же число ран",
     "image": "Images/Горы/Хольд.png"
@@ -631,7 +631,7 @@
     "attack": 5,
     "health": 5,
     "rarity": "ultra",
-    "element": "mountains",
+    "elements": ["mountains"],
     "set": "Основной",
     "text": "Линунг\nНайм - Раньте всех других существ на 7\nУникальность",
     "image": "Images/Горы/Заклинатель штормов.png"
