@@ -306,7 +306,7 @@
   <div class="modal" id="deckModal" aria-hidden="true">
     <div class="modal-box">
       <button class="modal-close" id="closeDeckModal">×</button>
-      <div class="modal-head"><span class="eyebrow">✦ Добавить колоду</span><h2>Выбери колоду для публикации</h2><p class="small">Здесь отображаются сохранённая колода из конструктора и уже созданные локальные колоды.</p></div>
+      <div class="modal-head"><span class="eyebrow">✦ Добавить колоду</span><h2>Выбери колоду для публикации</h2><p class="small">Здесь отображаются только колоды, которые были созданы кнопкой «Создать» во вкладке «База карт».</p></div>
       <div class="modal-layout">
         <section>
           <div class="choose-list" id="deckChoices"></div>
@@ -483,8 +483,6 @@
     }
     function getAvailableDecks(){
       const result=[];
-      const builder=JSON.parse(localStorage.getItem(BUILDER_KEY)||'[]');
-      if(Array.isArray(builder)&&builder.length){result.push({id:'builder_current',source:'Конструктор колоды',title:'Текущая колода из конструктора',cards:builder.map(c=>c.id??c),raw:builder})}
       const player=JSON.parse(localStorage.getItem(PLAYER_DECKS_KEY)||'[]');
       if(Array.isArray(player)){player.forEach((d,i)=>{if(d&&Array.isArray(d.cards)&&d.cards.length)result.push({id:d.id||('player_'+i),source:'Мои сохранённые колоды',title:d.title||('Моя колода '+(i+1)),cards:d.cards,raw:d})})}
       publishedDecks.forEach((d,i)=>{if(d&&Array.isArray(d.cards)&&d.cards.length)result.push({id:'published_'+d.id,source:'Уже опубликована',title:d.title||('Опубликованная колода '+(i+1)),cards:d.cards,raw:d,republish:true})})
@@ -582,10 +580,6 @@
 
     function makeLocalDecks(){
       const result=[];
-      const builder=JSON.parse(localStorage.getItem(BUILDER_KEY)||'[]');
-      if(Array.isArray(builder)&&builder.length){
-        result.push({id:'builder_current',source:'Конструктор',title:'Текущая колода из конструктора',cards:builder.map(c=>c.id??c),raw:builder,localType:'builder'});
-      }
       const player=JSON.parse(localStorage.getItem(PLAYER_DECKS_KEY)||'[]');
       if(Array.isArray(player)){
         player.forEach((d,i)=>{
@@ -752,7 +746,7 @@
     }
 
     function renderAll(){renderMyDecks();renderTopDecks();updateStats()}
-    function renderMyDecks(){const list=makeLocalDecks();$('myDecks').innerHTML=list.length?list.map(d=>renderLocalDeckCard(d)).join(''):'<div class="empty">Пока нет локальных колод. Собери колоду в конструкторе, и она появится здесь. После этого её можно открыть, отредактировать, удалить у себя или опубликовать.</div>'}
+    function renderMyDecks(){const list=makeLocalDecks();$('myDecks').innerHTML=list.length?list.map(d=>renderLocalDeckCard(d)).join(''):'<div class="empty">Пока нет созданных колод. Собери колоду во вкладке «База карт» и нажми «Создать», после этого она появится здесь.</div>'}
     function renderTopDecks(){const top=[...publishedDecks].sort((a,b)=>deckScore(b)-deckScore(a)).slice(0,5);$('topDecks').innerHTML=top.length?top.map((d,i)=>renderDeckCard(d,i+1)).join(''):'<div class="empty">Топ появится после публикации колод.</div>'}
     function updateStats(){
       const local=makeLocalDecks();
@@ -785,7 +779,7 @@
               <span class="score">Выбрать</span>
             </article>`;
           }).join('')
-        : '<div class="empty">Сначала собери колоду в конструкторе. Она сохранится как текущая колода.</div>';
+        : '<div class="empty">Сначала собери колоду во вкладке «База карт» и нажми «Создать». После этого она появится здесь.</div>';
 
       $('selectedPreview').innerHTML='<div class="empty">Выбери колоду слева.</div>';
     }
