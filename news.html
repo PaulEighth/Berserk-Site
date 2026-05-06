@@ -179,7 +179,7 @@
 
 
 /* FINAL FIX: hide footer and keep edit form above news modal */
-.footer{display:none!important}
+
 #formModal{z-index:26000!important}
 #formModal.show{display:flex!important}
 #newsModal{z-index:9999}
@@ -190,7 +190,7 @@
 
 
 /* FINAL SAVE FIX */
-.footer{display:none!important}
+
 #formModal{z-index:26000!important}
 #customConfirm{z-index:30000!important}
 #customAlert{z-index:31000!important}
@@ -1134,5 +1134,26 @@ btn.addEventListener("click", () => {
 setInterval(() => {
   localStorage.setItem("musicTime", music.currentTime);
 }, 1000);
-</script></body>
+</script>
+
+<footer class="footer" style="
+margin-top:18px;
+padding:18px 0 24px;
+border-top:1px solid rgba(232,194,112,.10);
+background:transparent;
+">
+  <div class="wrap">
+    <div style="
+      color:#bfb5a7;
+      font-size:15px;
+      line-height:1.7;
+      opacity:.9;
+    ">
+      Данный сайт является неофициальным фанатским проектом и не имеет никакого отношения к правообладателю игры Берсерк Герои Онлайн, ее лицензиатам или официальным партнерам.
+Все права на игру Берсерк Герои Онлайн, включая название, торговые марки, графические элементы и другие объекты интеллектуальной собственности, принадлежат их законным правообладателям
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
