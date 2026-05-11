@@ -5,7 +5,7 @@ const cors = require("cors");
 const pool = require("./db");
 
 const app = express();
-
+app.use(express.static(__dirname));
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -171,7 +171,7 @@ await pool.query("ALTER TABLE tournaments ADD COLUMN IF NOT EXISTS players_can_e
 // =========================
 
 app.get("/", (req, res) => {
-  res.send("Berserk Heroes Online Server работает 🚀");
+  res.sendFile(__dirname + "/BerserHeroesOnline.html");
 });
 
 
