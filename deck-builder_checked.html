@@ -437,12 +437,28 @@
     <a href="meta.html#meta">(Мета тех.работа)</a>
     <a href="tournaments.html">Турниры</a>
     <a href="news.html">Новости</a>
+    <a id="adminPanelLink" href="admin.html" style="display:none">Админ</a>
     <a href="BerserHeroesOnline.html#contacts">Контакты</a>
   </div>
 
-  <a class="btn gold" href="https://t.me/Paul_Eighth" target="_blank">
-    Telegram
+  <div style="display:flex; gap:14px; align-items:center;">
+
+  <a class="btn ghost"
+     href="https://t.me/Paul_Eighth"
+     target="_blank"
+     style="
+       border:1px solid #d6a84f;
+       color:#d6a84f;
+       background:transparent;
+     ">
+    @Paul_Eighth
   </a>
+
+  <a class="btn gold" href="auth.html">
+  Войти
+</a>
+
+</div>
 </nav>
 
   <header class="hero wrap">
@@ -569,6 +585,70 @@
     </div>
   </div>
 
+  
+<div id="authRequiredModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:99999;
+justify-content:center;
+align-items:center;
+padding:24px;
+">
+  <div style="
+  width:min(460px,100%);
+  background:#0b1019;
+  border:1px solid rgba(232,194,112,.22);
+  border-radius:30px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  ">
+    <h2 style="
+    margin:0 0 12px;
+    color:#f0d28b;
+    font-size:30px;
+    letter-spacing:-.04em;
+    ">Нужно войти</h2>
+
+    <p id="authRequiredText" style="
+    margin:0 0 28px;
+    color:#cfc7ba;
+    line-height:1.6;
+    ">Чтобы создать колоду, войдите в аккаунт.</p>
+
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    ">
+      <button onclick="goToAuth()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d6a84f,#f0d28b);
+      color:#16110a;
+      font-weight:900;
+      cursor:pointer;
+      ">Войти</button>
+
+      <button onclick="closeAuthRequiredModal()" style="
+      padding:14px 24px;
+      border-radius:999px;
+      border:1px solid #d6a84f;
+      background:transparent;
+      color:#d6a84f;
+      font-weight:900;
+      cursor:pointer;
+      ">Отмена</button>
+    </div>
+  </div>
+</div>
+
+
   <div class="toast" id="toast">Карта добавлена</div>
 
   <script>
@@ -620,6 +700,28 @@
     let multiOnly = false;
     let deck = JSON.parse(localStorage.getItem('bho_deck_builder_deck') || '[]');
     const $ = (id) => document.getElementById(id);
+
+
+    function isLoggedIn(){
+      return !!localStorage.getItem("token");
+    }
+
+    function showAuthRequiredModal(text){
+      const modal = document.getElementById("authRequiredModal");
+      const message = document.getElementById("authRequiredText");
+      if(message) message.textContent = text || "Чтобы выполнить это действие, войдите в аккаунт.";
+      if(modal) modal.style.display = "flex";
+    }
+
+    function closeAuthRequiredModal(){
+      const modal = document.getElementById("authRequiredModal");
+      if(modal) modal.style.display = "none";
+    }
+
+    function goToAuth(){
+      window.location.href = "auth.html";
+    }
+
 
     function isHeroCard(card){
       return String(card?.type || '').toLowerCase().includes('герой');
@@ -761,6 +863,11 @@
     }
 
     function openCreateDeckModal(){
+      if(!isLoggedIn()){
+        showAuthRequiredModal("Чтобы создать колоду, войдите в аккаунт.");
+        return;
+      }
+
       const error = validateDeckForCreate();
       if(error){ showCustomAlert(error); return; }
       $('createdDeckTitle').value='';
@@ -1197,6 +1304,191 @@ background:transparent;
   </div>
 </footer>
 
+
+
+
+
+
+<div id="logoutModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:99999;
+justify-content:center;
+align-items:center;
+padding:24px;
+">
+  <div style="
+  width:min(420px,100%);
+  background:#0b1019;
+  border:1px solid rgba(232,194,112,.18);
+  border-radius:30px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  ">
+    <h2 style="
+    margin:0 0 12px;
+    color:#f0d28b;
+    font-size:30px;
+    ">
+      Выйти из аккаунта?
+    </h2>
+
+    <p style="
+    margin:0 0 28px;
+    color:#cfc7ba;
+    line-height:1.6;
+    ">
+      Вы действительно хотите выйти?
+    </p>
+
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    ">
+      <button onclick="confirmLogout()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d6a84f,#f0d28b);
+      color:#16110a;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Выйти
+      </button>
+
+      <button onclick="closeLogoutModal()" style="
+      padding:14px 24px;
+      border-radius:999px;
+      border:1px solid #d6a84f;
+      background:transparent;
+      color:#d6a84f;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Отмена
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("user"));
+function getUserRole(){
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.role || "user";
+}
+
+function isOwnerAdmin(){
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.username === "Eighth#2020";
+}
+
+function canModerateContent(){
+  return ["admin", "developer", "moderator"].includes(getUserRole());
+}
+
+function canCreateContent(){
+  return ["admin", "developer", "moderator", "creator"].includes(getUserRole());
+}
+if (currentUser?.role === "banned") {
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  alert("Ваш аккаунт заблокирован");
+
+  window.location.href = "auth.html";
+}
+const adminLink = document.getElementById("adminPanelLink");
+
+if (
+  currentUser &&
+  currentUser.role === "admin" &&
+  adminLink
+) {
+  adminLink.style.display = "inline-flex";
+}
+
+const roleColors = {
+  user: "#ffffff",
+  admin: "#6f3cff",
+  developer: "#0f7b43",
+  moderator: "#57d46a",
+  vip: "#59c8ff",
+  creator: "#ff9d42",
+  banned: "#ff4d4d"
+};
+function userStarHtml(user){
+  if(!user) return "";
+
+  if(user.username === "Eighth#2020"){
+    return '<span style="color:#6f3cff;filter:drop-shadow(0 0 8px #6f3cff)">⭐</span> ';
+  }
+
+  if(user.is_partner){
+    return '<span style="color:#f0d28b;filter:drop-shadow(0 0 8px #f0d28b)">⭐</span> ';
+  }
+
+  return "";
+}
+function findAuthButton(){
+  const buttons = document.querySelectorAll("a.btn");
+
+  for (const btn of buttons) {
+    const text = btn.textContent.trim();
+    const href = btn.getAttribute("href");
+
+    if (
+      href === "auth.html" ||
+      text === "Войти" ||
+      (currentUser && text === currentUser.username)
+    ) {
+      return btn;
+    }
+  }
+
+  return null;
+}
+
+const authBtn = findAuthButton();
+
+if(currentUser && authBtn){
+
+  authBtn.innerHTML = userStarHtml(currentUser) + currentUser.username;
+
+  authBtn.classList.remove("gold");
+  authBtn.classList.add("ghost");
+
+  authBtn.style.background = "rgba(255,255,255,.06)";
+  authBtn.style.border = "1px solid rgba(232,194,112,.35)";
+  authBtn.style.boxShadow = "none";
+  authBtn.style.color = roleColors[currentUser.role] || "#ffffff";
+
+  authBtn.href = "#";
+
+  authBtn.onclick = function(e){
+    e.preventDefault();
+    document.getElementById("logoutModal").style.display = "flex";
+  };
+}
+
+function confirmLogout(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  location.reload();
+}
+
+function closeLogoutModal(){
+  document.getElementById("logoutModal").style.display = "none";
+}
+</script>
 
 </body>
 </html>

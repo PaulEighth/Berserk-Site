@@ -65,7 +65,25 @@
 
 </style>
 </head>
-<body> <div class="grain"></div> <nav class="nav"> <a class="brand" href="BerserHeroesOnline.html"> <span class="brand-mark"><img src="Logo.png" alt="BHO" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></span> <span>Berserk Heroes Online</span> </a> <div class="nav-links"> <a href="BerserHeroesOnline.html">О сайте</a> <a href="deck-builder_checked.html">База карт</a> <a href="decks_select_publish.html#deck">Колоды</a> <a class="active" href="meta.html">(Мета тех.работа)</a> <a href="tournaments.html">Турниры</a> <a href="news.html">Новости</a> <a href="BerserHeroesOnline.html#contacts">Контакты</a> </div> <a class="btn gold" href="https://t.me/Paul_Eighth" target="_blank">Telegram</a> </nav> <header class="hero wrap"> <span class="eyebrow">✦ Мета колод БГО</span> <h1>Рейтинг побед и поражений</h1> <p class="lead">Здесь отображаются все опубликованные колоды из вкладки «Колоды». Игроки могут отмечать победы и поражения, а сайт автоматически считает процент побед</p> <p class="small">Пока всё хранится в этом браузере через localStorage. После подключения сервера статистика станет общей для всех игроков.</p> </header> <section class="wrap stats"> <div class="stats-card"><b id="totalDecks">0</b><span>опубликованных колод</span></div> <div class="stats-card"><b id="bestWinrate"></b><span>лучший процент побед</span></div> <div class="stats-card"><b id="totalGames">0</b><span>сыграно матчей</span></div> <div class="stats-card"><b id="currentNick"></b><span>твой ник</span></div> </section> <main class="wrap"> <section class="panel"> <div class="section-title"><h2>Все опубликованные колоды</h2><span class="small">сортировка по проценту побед</span></div> <div class="search-panel"> <input class="search-field" id="searchDeck" type="search" placeholder="Поиск по названию колоды..."> <input class="search-field" id="searchPlayer" type="search" placeholder="Поиск по нику игрока..."> </div> <div class="meta-grid" id="metaDecks"></div> </section> </main> <div class="modal" id="deckModal" aria-hidden="true"> <div class="modal-box"> <button class="modal-close" onclick="closeDeckModal()">×</button> <div class="modal-head"> <span class="eyebrow">✦ Состав и статистика</span> <h2 id="modalTitle">Колода</h2> <p id="modalMeta" class="meta"></p> </div> <div class="modal-layout"> <div> <div id="modalCards" class="card-grid"></div> <div class="players-notebook-wrap"> <h3>Игроки на этой колоде</h3> <p class="small">Список идёт по проценту побед. Справа видно, сколько раз игрок нажал победу и поражение.</p> <div id="playersNotebook"></div> </div> </div> <aside class="side-panel"> <h3 style="margin-top:0">Статистика колоды</h3> <div id="modalWinrate" class="winrate"></div> <div class="votes"> <button class="btn gold" id="modalWinBtn">Победа</button> <button class="btn red" id="modalLossBtn">Поражение</button> </div> </aside> </div> </div></div></main><footer class="footer"><div class="wrap"><div>Данный сайт является неофициальным фанатским проектом и не имеет никакого отношения к правообладателю игры Берсерк Герои Онлайн, ее лицензиатам или официальным партнерам.
+<body> <div class="grain"></div> <nav class="nav"> <a class="brand" href="BerserHeroesOnline.html"> <span class="brand-mark"><img src="Logo.png" alt="BHO" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></span> <span>Berserk Heroes Online</span> </a> <div class="nav-links"> <a href="BerserHeroesOnline.html">О сайте</a> <a href="deck-builder_checked.html">База карт</a> <a href="decks_select_publish.html#deck">Колоды</a> <a class="active" href="meta.html">(Мета тех.работа)</a> <a href="tournaments.html">Турниры</a> <a href="news.html">Новости</a>
+  <a id="adminPanelLink" href="admin.html" style="display:none">Админ</a> <a href="BerserHeroesOnline.html#contacts">Контакты</a> </div> <div style="display:flex; gap:14px; align-items:center;">
+
+  <a class="btn ghost"
+     href="https://t.me/Paul_Eighth"
+     target="_blank"
+     style="
+       border:1px solid #d6a84f;
+       color:#d6a84f;
+       background:transparent;
+     ">
+    @Paul_Eighth
+  </a>
+
+  <a class="btn gold" href="auth.html">
+  Войти
+</a>
+
+</div></nav> <header class="hero wrap"> <span class="eyebrow">✦ Мета колод БГО</span> <h1>Рейтинг побед и поражений</h1> <p class="lead">Здесь отображаются все опубликованные колоды из вкладки «Колоды». Игроки могут отмечать победы и поражения, а сайт автоматически считает процент побед</p> <p class="small">Пока всё хранится в этом браузере через localStorage. После подключения сервера статистика станет общей для всех игроков.</p> </header> <section class="wrap stats"> <div class="stats-card"><b id="totalDecks">0</b><span>опубликованных колод</span></div> <div class="stats-card"><b id="bestWinrate"></b><span>лучший процент побед</span></div> <div class="stats-card"><b id="totalGames">0</b><span>сыграно матчей</span></div> <div class="stats-card"><b id="currentNick"></b><span>твой ник</span></div> </section> <main class="wrap"> <section class="panel"> <div class="section-title"><h2>Все опубликованные колоды</h2><span class="small">сортировка по проценту побед</span></div> <div class="search-panel"> <input class="search-field" id="searchDeck" type="search" placeholder="Поиск по названию колоды..."> <input class="search-field" id="searchPlayer" type="search" placeholder="Поиск по нику игрока..."> </div> <div class="meta-grid" id="metaDecks"></div> </section> </main> <div class="modal" id="deckModal" aria-hidden="true"> <div class="modal-box"> <button class="modal-close" onclick="closeDeckModal()">×</button> <div class="modal-head"> <span class="eyebrow">✦ Состав и статистика</span> <h2 id="modalTitle">Колода</h2> <p id="modalMeta" class="meta"></p> </div> <div class="modal-layout"> <div> <div id="modalCards" class="card-grid"></div> <div class="players-notebook-wrap"> <h3>Игроки на этой колоде</h3> <p class="small">Список идёт по проценту побед. Справа видно, сколько раз игрок нажал победу и поражение.</p> <div id="playersNotebook"></div> </div> </div> <aside class="side-panel"> <h3 style="margin-top:0">Статистика колоды</h3> <div id="modalWinrate" class="winrate"></div> <div class="votes"> <button class="btn gold" id="modalWinBtn">Победа</button> <button class="btn red" id="modalLossBtn">Поражение</button> </div> </aside> </div> </div></div></main><footer class="footer"><div class="wrap"><div>Данный сайт является неофициальным фанатским проектом и не имеет никакого отношения к правообладателю игры Берсерк Герои Онлайн, ее лицензиатам или официальным партнерам.
 Все права на игру Берсерк Герои Онлайн, включая название, торговые марки, графические элементы и другие объекты интеллектуальной собственности, принадлежат их законным правообладателям</div></div></footer> <div class="toast" id="toast">Готово</div> <script> const STORAGE_PUBLISHED='bhoPublishedDecksV1'; const META_STATS_KEY='bhoDeckMetaStatsV1'; const USER_NICK_KEY='bhoUserNick'; let cards=[]; let publishedDecks=JSON.parse(localStorage.getItem(STORAGE_PUBLISHED)||'[]'); let metaStats=JSON.parse(localStorage.getItem(META_STATS_KEY)||'{}'); let openedDeckId=null; const $=id=>document.getElementById(id); function showToast(message){const toast=$('toast');toast.textContent=message;toast.classList.add('show');clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>toast.classList.remove('show'),1600)} function escapeHtml(str){return String(str??'').replace(/[&<>'"]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s]))} function toArray(value){if(Array.isArray(value))return value.filter(Boolean);if(value===undefined||value===null||value==='')return[];return String(value).split(/[,;\/|]+/).map(s=>s.trim()).filter(Boolean)} function getNum(card,keys,fallback=0){for(const k of keys){if(card[k]!==undefined&&card[k]!==null&&card[k]!==''){const n=Number(card[k]);return Number.isFinite(n)?n:fallback}}return fallback} function getCardType(card){return card.type||card.class||card.classes||card.category||'Не указан'} function getCardElement(card){ const value=card.element||card.elements||card['стихия']||card.elementName||card.faction||card.school||''; if(Array.isArray(value))return value.filter(Boolean).join(', '); return String(value||'').trim(); } function normalizeCard(card,index){const id=card.id??index+1;return{id,name:card.name||card.title||('Карта '+id),type:String(getCardType(card)),element:getCardElement(card),cost:getNum(card,['cost','price','mana','energy'],0),attack:getNum(card,['attack','atk','power'],0),health:getNum(card,['health','hp','life'],0),text:card.text||card.description||card.ability||'',image:card.image||('Images/'+id+'.png')}} function cardById(id){return cards.find(c=>String(c.id)===String(id))} function normalizeDeckCard(item){if(typeof item==='number'||typeof item==='string')return cardById(item)||{id:item,name:'Карта '+item,type:'Не указано',element:'',cost:0,image:''};if(item&&item.id)return cardById(item.id)||normalizeCard(item,0);return null} function deckCardsFromIds(deck){return (deck.cards||[]).map(normalizeDeckCard).filter(Boolean)} function isHero(card){return String(card?.type||'').toLowerCase().includes('герой')} function getHero(deckCards){return deckCards.find(isHero)||deckCards[0]||null} function groupPreviewCards(deckCards,hero){
   const grouped=[];
   deckCards.forEach(card=>{
@@ -121,7 +139,29 @@
   }
 
   renderAll();
-} function renderDeckCard(deck){const deckCards=deckCardsFromIds(deck);const totals=deckTotals(deck.id);return `<article class="deck-card" onclick="openDeckModal('${deck.id}')"><h3>${escapeHtml(deck.title)}</h3><div class="meta">Автор: <b>${escapeHtml(deck.author||'Не указан')}</b> карт: ${deck.cards.length}</div><p class="meta">${escapeHtml(deck.description||'Описание не добавлено.')}</p>${deckPreviewHtml(deckCards,deck)}<div class="winrate"><span class="win-percent ${percentClass(totals.percent)}">${totals.percent}%</span><span class="meta">побед ${totals.wins}W / ${totals.losses}L</span></div><div class="votes"><button class="vote win" onclick="event.stopPropagation(); addResult('${deck.id}','win')">Победа</button><button class="vote loss" onclick="event.stopPropagation(); addResult('${deck.id}','loss')">Поражение</button></div></article>`} function renderAll(){ let decks=sortedDecks(); const searchDeck=($('searchDeck')?.value||'').trim().toLowerCase(); const searchPlayer=($('searchPlayer')?.value||'').trim().toLowerCase(); decks=decks.filter(deck=>{ const title=String(deck.title||'').toLowerCase(); const author=String(deck.author||'').toLowerCase(); return title.includes(searchDeck) && author.includes(searchPlayer); }); $('metaDecks').innerHTML=decks.length ? decks.map(renderDeckCard).join('') : '<div class="empty">Ничего не найдено.</div>'; updateStats(); if(openedDeckId)renderModalContent(openedDeckId); } function updateStats(){const decks=sortedDecks();const best=decks[0];const allTotals=publishedDecks.map(d=>deckTotals(d.id));const totalGames=allTotals.reduce((s,t)=>s+t.total,0);$('totalDecks').textContent=publishedDecks.length;$('totalGames').textContent=totalGames;$('currentNick').textContent=getCurrentUserNick();$('bestWinrate').textContent=best?`${best.title} ${deckTotals(best.id).percent}%`:''} function addResult(deckId,type){const nick=getCurrentUserNick();const stats=getDeckStats(deckId);if(!stats.players[nick])stats.players[nick]={wins:0,losses:0};if(type==='win')stats.players[nick].wins++;else stats.players[nick].losses++;saveStats();renderAll();showToast(type==='win'?'Победа засчитана':'Поражение засчитано')} function openDeckModal(deckId){openedDeckId=deckId;renderModalContent(deckId);$('deckModal').classList.add('show');$('deckModal').setAttribute('aria-hidden','false')} function closeDeckModal(){openedDeckId=null;$('deckModal').classList.remove('show');$('deckModal').setAttribute('aria-hidden','true')} function renderModalContent(deckId){const deck=publishedDecks.find(d=>String(d.id)===String(deckId));if(!deck)return;const deckCards=deckCardsFromIds(deck);const totals=deckTotals(deck.id);$('modalTitle').textContent=deck.title;const hero=getHero(deckCards); const heroElement=hero?.element||'Не указана'; $('modalMeta').innerHTML=`Опубликованная колода Автор: <b>${escapeHtml(deck.author||'Не указан')}</b> карт: ${deck.cards.length}<br><span class="element-badge">Стихия героя: ${escapeHtml(heroElement)}</span>`;$('modalCards').innerHTML=deckCards.length?groupDeckCards(deckCards).map(({card,count})=>`<article class="card-tile"><div class="copy-badge">${count}x</div><img src="${escapeHtml(card.image||'')}" alt="${escapeHtml(card.name)}" title="${escapeHtml(card.name)}" onerror="this.style.visibility='hidden'"><div style="font-size:12px;font-weight:900;line-height:1.25;margin-top:7px;color:#f4efe6">${escapeHtml(card.name)}</div></article>`).join(''):'<div class="empty">Карты не найдены. Проверь cards.json и id карт.</div>';$('modalWinrate').innerHTML=`<span class="win-percent ${percentClass(totals.percent)}">${totals.percent}%</span><span class="meta">побед ${totals.wins} побед / ${totals.losses} поражений</span>`;$('modalWinBtn').onclick=()=>addResult(deck.id,'win');$('modalLossBtn').onclick=()=>addResult(deck.id,'loss');renderPlayerStats(deck.id)} function renderPlayerStats(deckId){ const stats=getDeckStats(deckId); const rows=Object.entries(stats.players||{}).map(([nick,p])=>{ const wins=Number(p.wins)||0; const losses=Number(p.losses)||0; const total=wins+losses; const percent=total?Math.round(wins/total*100):0; return{nick,wins,losses,total,percent}; }).sort((a,b)=>b.percent-a.percent||b.wins-a.wins||b.total-a.total); if(!rows.length){ $('playersNotebook').innerHTML='<div class="empty">Пока никто не отметил победу или поражение.</div>'; return; } $('playersNotebook').innerHTML=`<div class="notebook-table"> <div class="notebook-row head"> <div class="notebook-cell">№</div> <div class="notebook-cell">Ник игрока</div> <div class="notebook-cell">Победы</div> <div class="notebook-cell">Поражения</div> <div class="notebook-cell">%</div> </div> ${rows.map((r,i)=>` <div class="notebook-row"> <div class="notebook-cell notebook-rank">${i+1}</div> <div class="notebook-cell notebook-nick">${escapeHtml(r.nick)}</div> <div class="notebook-cell notebook-number">${r.wins}</div> <div class="notebook-cell notebook-number">${r.losses}</div> <div class="notebook-cell notebook-percent ${percentClass(r.percent)}">${r.percent}%</div> </div> `).join('')} </div>`; } $('deckModal').addEventListener('click',e=>{if(e.target===$('deckModal'))closeDeckModal()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDeckModal()}); document.addEventListener('input',e=>{ if(e.target.id==='searchDeck'||e.target.id==='searchPlayer'){ renderAll(); } }); loadCards(); </script> <script> history.scrollRestoration="manual"; window.addEventListener("load",function(){document.body.scrollTop=0;document.documentElement.scrollTop=0}); </script>
+} 
+function getDeckAuthorColor(deck){
+  return roleColors[deck.author_role || "user"] || "#ffffff";
+}
+
+function deckAuthorStarHtml(deck){
+  const author = String(deck.author || "").trim().toLowerCase();
+
+  if(author === "eighth#2020"){
+    return '<span style="color:#6f3cff;filter:drop-shadow(0 0 8px #6f3cff)">⭐</span> ';
+  }
+
+  if(deck.author_is_partner){
+    return '<span style="color:#f0d28b;filter:drop-shadow(0 0 8px #f0d28b)">⭐</span> ';
+  }
+
+  return "";
+}
+
+function deckAuthorHtml(deck){
+  return `<b style="color:${escapeHtml(getDeckAuthorColor(deck))}">${deckAuthorStarHtml(deck)}${escapeHtml(deck.author || "Не указан")}</b>`;
+}
+function renderDeckCard(deck){const deckCards=deckCardsFromIds(deck);const totals=deckTotals(deck.id);return `<article class="deck-card" onclick="openDeckModal('${deck.id}')"><h3>${escapeHtml(deck.title)}</h3><div class="meta">Автор: ${deckAuthorHtml(deck)} карт: ${deck.cards.length}</div><p class="meta">${escapeHtml(deck.description||'Описание не добавлено.')}</p>${deckPreviewHtml(deckCards,deck)}<div class="winrate"><span class="win-percent ${percentClass(totals.percent)}">${totals.percent}%</span><span class="meta">побед ${totals.wins}W / ${totals.losses}L</span></div><div class="votes"><button class="vote win" onclick="event.stopPropagation(); addResult('${deck.id}','win')">Победа</button><button class="vote loss" onclick="event.stopPropagation(); addResult('${deck.id}','loss')">Поражение</button></div></article>`} function renderAll(){ let decks=sortedDecks(); const searchDeck=($('searchDeck')?.value||'').trim().toLowerCase(); const searchPlayer=($('searchPlayer')?.value||'').trim().toLowerCase(); decks=decks.filter(deck=>{ const title=String(deck.title||'').toLowerCase(); const author=String(deck.author||'').toLowerCase(); return title.includes(searchDeck) && author.includes(searchPlayer); }); $('metaDecks').innerHTML=decks.length ? decks.map(renderDeckCard).join('') : '<div class="empty">Ничего не найдено.</div>'; updateStats(); if(openedDeckId)renderModalContent(openedDeckId); } function updateStats(){const decks=sortedDecks();const best=decks[0];const allTotals=publishedDecks.map(d=>deckTotals(d.id));const totalGames=allTotals.reduce((s,t)=>s+t.total,0);$('totalDecks').textContent=publishedDecks.length;$('totalGames').textContent=totalGames;$('currentNick').textContent=getCurrentUserNick();$('bestWinrate').textContent=best?`${best.title} ${deckTotals(best.id).percent}%`:''} function addResult(deckId,type){const nick=getCurrentUserNick();const stats=getDeckStats(deckId);if(!stats.players[nick])stats.players[nick]={wins:0,losses:0};if(type==='win')stats.players[nick].wins++;else stats.players[nick].losses++;saveStats();renderAll();showToast(type==='win'?'Победа засчитана':'Поражение засчитано')} function openDeckModal(deckId){openedDeckId=deckId;renderModalContent(deckId);$('deckModal').classList.add('show');$('deckModal').setAttribute('aria-hidden','false')} function closeDeckModal(){openedDeckId=null;$('deckModal').classList.remove('show');$('deckModal').setAttribute('aria-hidden','true')} function renderModalContent(deckId){const deck=publishedDecks.find(d=>String(d.id)===String(deckId));if(!deck)return;const deckCards=deckCardsFromIds(deck);const totals=deckTotals(deck.id);$('modalTitle').textContent=deck.title;const hero=getHero(deckCards); const heroElement=hero?.element||'Не указана'; $('modalMeta').innerHTML=`Опубликованная колода Автор: ${deckAuthorHtml(deck)} карт: ${deck.cards.length}<br><span class="element-badge">Стихия героя: ${escapeHtml(heroElement)}</span>`;$('modalCards').innerHTML=deckCards.length?groupDeckCards(deckCards).map(({card,count})=>`<article class="card-tile"><div class="copy-badge">${count}x</div><img src="${escapeHtml(card.image||'')}" alt="${escapeHtml(card.name)}" title="${escapeHtml(card.name)}" onerror="this.style.visibility='hidden'"><div style="font-size:12px;font-weight:900;line-height:1.25;margin-top:7px;color:#f4efe6">${escapeHtml(card.name)}</div></article>`).join(''):'<div class="empty">Карты не найдены. Проверь cards.json и id карт.</div>';$('modalWinrate').innerHTML=`<span class="win-percent ${percentClass(totals.percent)}">${totals.percent}%</span><span class="meta">побед ${totals.wins} побед / ${totals.losses} поражений</span>`;$('modalWinBtn').onclick=()=>addResult(deck.id,'win');$('modalLossBtn').onclick=()=>addResult(deck.id,'loss');renderPlayerStats(deck.id)} function renderPlayerStats(deckId){ const stats=getDeckStats(deckId); const rows=Object.entries(stats.players||{}).map(([nick,p])=>{ const wins=Number(p.wins)||0; const losses=Number(p.losses)||0; const total=wins+losses; const percent=total?Math.round(wins/total*100):0; return{nick,wins,losses,total,percent}; }).sort((a,b)=>b.percent-a.percent||b.wins-a.wins||b.total-a.total); if(!rows.length){ $('playersNotebook').innerHTML='<div class="empty">Пока никто не отметил победу или поражение.</div>'; return; } $('playersNotebook').innerHTML=`<div class="notebook-table"> <div class="notebook-row head"> <div class="notebook-cell">№</div> <div class="notebook-cell">Ник игрока</div> <div class="notebook-cell">Победы</div> <div class="notebook-cell">Поражения</div> <div class="notebook-cell">%</div> </div> ${rows.map((r,i)=>` <div class="notebook-row"> <div class="notebook-cell notebook-rank">${i+1}</div> <div class="notebook-cell notebook-nick">${escapeHtml(r.nick)}</div> <div class="notebook-cell notebook-number">${r.wins}</div> <div class="notebook-cell notebook-number">${r.losses}</div> <div class="notebook-cell notebook-percent ${percentClass(r.percent)}">${r.percent}%</div> </div> `).join('')} </div>`; } $('deckModal').addEventListener('click',e=>{if(e.target===$('deckModal'))closeDeckModal()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDeckModal()}); document.addEventListener('input',e=>{ if(e.target.id==='searchDeck'||e.target.id==='searchPlayer'){ renderAll(); } }); loadCards(); </script> <script> history.scrollRestoration="manual"; window.addEventListener("load",function(){document.body.scrollTop=0;document.documentElement.scrollTop=0}); </script>
 <audio id="bgMusic" loop>
   <source src="BGO.mp3" type="audio/mpeg">
 </audio>
@@ -178,5 +218,176 @@ btn.addEventListener("click", () => {
 setInterval(() => {
   localStorage.setItem("musicTime", music.currentTime);
 }, 1000);
+</script><div id="logoutModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:99999;
+justify-content:center;
+align-items:center;
+padding:24px;
+">
+
+  <div style="
+  width:min(420px,100%);
+  background:#0b1019;
+  border:1px solid rgba(232,194,112,.18);
+  border-radius:30px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  ">
+
+    <h2 style="
+    margin:0 0 12px;
+    color:#f0d28b;
+    font-size:30px;
+    ">
+      Выйти из аккаунта?
+    </h2>
+
+    <p style="
+    margin:0 0 28px;
+    color:#cfc7ba;
+    line-height:1.6;
+    ">
+      Вы действительно хотите выйти?
+    </p>
+
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    ">
+
+      <button onclick="confirmLogout()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d6a84f,#f0d28b);
+      color:#16110a;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Выйти
+      </button>
+
+      <button onclick="closeLogoutModal()" style="
+      padding:14px 24px;
+      border-radius:999px;
+      border:1px solid #d6a84f;
+      background:transparent;
+      color:#d6a84f;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Отмена
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("user"));
+if (currentUser?.role === "banned") {
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  alert("Ваш аккаунт заблокирован");
+
+  window.location.href = "auth.html";
+}
+const adminLink = document.getElementById("adminPanelLink");
+
+if (
+  currentUser &&
+  currentUser.role === "admin" &&
+  adminLink
+) {
+  adminLink.style.display = "inline-flex";
+}
+
+const roleColors = {
+  user: "#ffffff",
+  admin: "#6f3cff",
+  developer: "#0f7b43",
+  moderator: "#57d46a",
+  vip: "#59c8ff",
+  creator: "#ff9d42",
+  banned: "#ff4d4d"
+};
+function userStarHtml(user){
+  if(!user) return "";
+
+  if(user.username === "Eighth#2020"){
+    return '<span style="color:#6f3cff;filter:drop-shadow(0 0 8px #6f3cff)">⭐</span> ';
+  }
+
+  if(user.is_partner){
+    return '<span style="color:#f0d28b;filter:drop-shadow(0 0 8px #f0d28b)">⭐</span> ';
+  }
+
+  return "";
+}
+function findAuthButton(){
+  const buttons = document.querySelectorAll("a.btn");
+
+  for (const btn of buttons) {
+    const text = btn.textContent.trim();
+    const href = btn.getAttribute("href");
+
+    if (
+      href === "auth.html" ||
+      text === "Войти" ||
+      (currentUser && text === currentUser.username)
+    ) {
+      return btn;
+    }
+  }
+
+  return null;
+}
+
+const authBtn = findAuthButton();
+
+if(currentUser && authBtn){
+
+  authBtn.innerHTML = userStarHtml(currentUser) + currentUser.username;
+
+  authBtn.classList.remove("gold");
+  authBtn.classList.add("ghost");
+
+  authBtn.style.background = "rgba(255,255,255,.06)";
+  authBtn.style.border = "1px solid rgba(232,194,112,.35)";
+  authBtn.style.boxShadow = "none";
+  authBtn.style.color = roleColors[currentUser.role] || "#ffffff";
+
+  authBtn.href = "#";
+
+  authBtn.onclick = function(e){
+    e.preventDefault();
+    document.getElementById("logoutModal").style.display = "flex";
+  };
+}
+
+function confirmLogout(){
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  location.reload();
+}
+
+function closeLogoutModal(){
+
+  document.getElementById("logoutModal").style.display = "none";
+
+}
 </script></body>
 </html>

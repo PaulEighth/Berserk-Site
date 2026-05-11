@@ -245,7 +245,21 @@
   overflow-wrap:anywhere !important;
   word-break:break-word !important;
 }
+.news-comment-author{
+  font-weight:950;
+  margin-bottom:4px;
+}
 
+.news-comment-delete{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid rgba(255,107,107,.35);
+  background:rgba(255,107,107,.16);
+  color:#ffd3d3;
+  font-weight:950;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -307,7 +321,7 @@
 
   window.alert = function(message){
     const root = ensureNiceDialog();
-    document.getElementById('niceNativeTitle').textContent = 'Ошибка';
+    document.getElementById('niceNativeTitle').textContent = 'Информация';
     document.getElementById('niceNativeText').textContent = String(message || '');
     document.getElementById('niceNativeActions').innerHTML = `
       <button type="button" id="niceNativeOk" style="
@@ -390,12 +404,28 @@
     <a href="meta.html#meta">(Мета тех.работа)</a>
     <a href="tournaments.html">Турниры</a>
     <a class="active" href="news.html">Новости</a>
+    <a id="adminPanelLink" href="admin.html" style="display:none">Админ</a>
     <a href="BerserHeroesOnline.html#contacts">Контакты</a>
   </div>
 
-  <a class="btn gold" href="https://t.me/Paul_Eighth" target="_blank">
-    Telegram
+  <div style="display:flex; gap:14px; align-items:center;">
+
+  <a class="btn ghost"
+     href="https://t.me/Paul_Eighth"
+     target="_blank"
+     style="
+       border:1px solid #d6a84f;
+       color:#d6a84f;
+       background:transparent;
+     ">
+    @Paul_Eighth
   </a>
+
+  <a class="btn gold" href="auth.html">
+  Войти
+</a>
+
+</div>
 </nav>
 
   <header class="hero wrap" id="top">
@@ -432,6 +462,15 @@
           <h2 id="modalTitle"></h2>
           <div class="article-text" id="modalText"></div>
           <div class="news-admin-actions" id="modalAdminActions"></div>
+          <div class="news-comments">
+  <h3>Комментарии</h3>
+  <div class="news-comment-list" id="newsCommentsList"></div>
+
+  <div class="news-comment-form">
+    <input class="field" id="newsCommentInput" placeholder="Написать комментарий...">
+    <button class="btn gold" onclick="addNewsComment()">Отправить</button>
+  </div>
+</div>
         </article>
       </div>
     </div>
@@ -464,7 +503,7 @@
 
         <label>
           <span class="label">Кто выпустил новость</span>
-          <input class="field" id="newsAuthorInput" placeholder="Например: Eighth">
+          <input class="field" id="newsAuthorInput" placeholder="Например: Eighth#2020" readonly title="Автор берётся из профиля игрока">
         </label>
 
         <label class="full">
@@ -508,6 +547,8 @@
       <button class="btn ghost" id="confirmNo">Отмена</button>
     </div>
   </div>
+</div>
+
 <div class="custom-alert" id="customAlert" aria-hidden="true">
     <div class="custom-alert-box">
       <h3 id="customAlertTitle">Готово</h3>
@@ -522,8 +563,8 @@
     const NEWS_KEY = 'bhoNewsPublishedV1';
     const REQUESTS_KEY = 'bhoNewsRequestsV1';
 
-    let NEWS = JSON.parse(localStorage.getItem(NEWS_KEY) || '[]');
-    let NEWS_REQUESTS = JSON.parse(localStorage.getItem(REQUESTS_KEY) || '[]');
+    let NEWS = [];
+    let NEWS_REQUESTS = [];
     let formMode = 'create';
     let editingNewsIndex = null;
     let selectedCover = '';
@@ -533,6 +574,77 @@
     let currentOpenMediaList = [];
     let pendingDeleteRequestIndex = null;
     let confirmMode = 'news';
+
+
+    function getLoggedUser(){
+      try { return JSON.parse(localStorage.getItem("user")); }
+      catch(e){ return null; }
+    }
+
+    function getUserRole(){
+      const user = getLoggedUser();
+      return user?.role || "user";
+    }
+
+    function isBanned(){
+      return getUserRole() === "banned";
+    }
+
+    function canCreateNews(){
+      return ["admin", "developer", "moderator", "creator"].includes(getUserRole());
+    }
+
+    function canEditNews(){
+      return ["admin", "developer", "moderator"].includes(getUserRole());
+    }
+
+    function canDeleteNews(){
+      return ["admin", "developer", "moderator"].includes(getUserRole());
+    }
+
+    function canSuggestNews(){
+      return isLoggedIn() && !isBanned();
+    }
+
+    function canOpenNewsRequests(){
+      const user = getLoggedUser();
+      return !!user && user.username === "Eighth#2020";
+    }
+
+    function authHeaders(){
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("token")}`
+  };
+}
+
+function isLoggedIn(){
+  return !!localStorage.getItem("token") && !!getLoggedUser();
+}
+
+    const ADMIN_USERNAME = "Eighth#2020";
+
+    function isAdmin(){
+      const user = getLoggedUser();
+      return !!user && user.username === ADMIN_USERNAME;
+    }
+
+    function showAuthRequiredModal(text){
+      const modal = document.getElementById("authRequiredModal");
+      const message = document.getElementById("authRequiredText");
+      if(message) message.textContent = text || "Чтобы выполнить это действие, войдите в аккаунт.";
+      if(modal) modal.style.display = "flex";
+    }
+
+    function closeAuthRequiredModal(){
+      const modal = document.getElementById("authRequiredModal");
+      if(modal) modal.style.display = "none";
+    }
+
+    function goToAuth(){
+      window.location.href = "auth.html";
+    }
+
 
     const placeholder = (title, emoji='📰') => `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151b2a"/><stop offset=".55" stop-color="#2b1e12"/><stop offset="1" stop-color="#090b11"/></linearGradient><radialGradient id="r" cx="35%" cy="25%" r="45%"><stop stop-color="#f0d28b" stop-opacity=".45"/><stop offset="1" stop-color="#f0d28b" stop-opacity="0"/></radialGradient></defs><rect width="800" height="800" rx="70" fill="url(#g)"/><rect width="800" height="800" rx="70" fill="url(#r)"/><text x="400" y="345" text-anchor="middle" font-size="120">${emoji}</text><text x="400" y="445" text-anchor="middle" font-family="Arial" font-size="42" font-weight="700" fill="#f0d28b">${title}</text><text x="400" y="505" text-anchor="middle" font-family="Arial" font-size="26" fill="#b8ae9f">Berserk Heroes Online</text></svg>`)}`;
 
@@ -702,6 +814,271 @@ async function readManyFiles(files){
 
     function imgError(img, title, emoji){ img.onerror=null; img.src=placeholder(title, emoji); }
 
+
+    function setupNewsRoleButtons(){
+      const createBtn = document.getElementById('openCreateNews');
+      const suggestBtn = document.getElementById('openSuggestNews');
+      const requestsBtn = document.getElementById('openRequests');
+
+      if(createBtn) createBtn.style.display = canCreateNews() ? "inline-flex" : "none";
+      if(suggestBtn) suggestBtn.style.display = canSuggestNews() ? "inline-flex" : "none";
+      if(requestsBtn) requestsBtn.style.display = canOpenNewsRequests() ? "inline-flex" : "none";
+    }
+function getNewsAuthorColor(news){
+  const newsRoleColors = {
+    user: "#ffffff",
+    admin: "#6f3cff",
+    developer: "#0f7b43",
+    moderator: "#57d46a",
+    vip: "#59c8ff",
+    creator: "#ff9d42",
+    banned: "#ff4d4d"
+  };
+
+  return newsRoleColors[news.author_role || "user"] || "#ffffff";
+}
+
+function newsAuthorStarHtml(news){
+  const author = String(news.author || "").trim().toLowerCase();
+
+  if(author === "eighth#2020"){
+    return '<span style="color:#6f3cff;filter:drop-shadow(0 0 8px #6f3cff)">⭐</span> ';
+  }
+
+  if(news.author_is_partner){
+    return '<span style="color:#f0d28b;filter:drop-shadow(0 0 8px #f0d28b)">⭐</span> ';
+  }
+
+  return "";
+}
+
+function newsAuthorHtml(news){
+  return `<span style="color:${escapeHtml(getNewsAuthorColor(news))}">${newsAuthorStarHtml(news)}${escapeHtml(news.author || "Автор")}</span>`;
+}
+
+function canDeleteComment(news, comment){
+  const user = getLoggedUser();
+  if(!user) return false;
+
+  const role = user.role || "user";
+  const username = String(user.username || "").toLowerCase();
+  const newsAuthor = String(news.author || "").toLowerCase();
+
+  return (
+    username === "eighth#2020" ||
+    username === newsAuthor ||
+    ["admin", "developer", "moderator", "creator"].includes(role)
+  );
+}
+
+async function loadNewsComments(){
+  if(currentOpenNewsIndex === null) return;
+
+  const news = NEWS[currentOpenNewsIndex];
+  const box = document.getElementById("newsCommentsList");
+
+  if(!news || !box || !news.id) return;
+
+  try{
+    const response = await fetch(`http://localhost:3000/api/news/${news.id}/comments`);
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось загрузить комментарии");
+    }
+
+    news.comments = data.comments.map(comment => ({
+      id: comment.id,
+      author: comment.author_name,
+      author_role: comment.author_role || "user",
+      author_is_partner: !!comment.author_is_partner,
+      text: comment.text,
+      date: new Date(comment.created_at).toLocaleString("ru-RU")
+    }));
+
+    renderNewsComments();
+
+  }catch(error){
+    console.error(error);
+    box.innerHTML = '<div class="slot-note">Не удалось загрузить комментарии.</div>';
+  }
+}
+
+function renderNewsComments(){
+  if(currentOpenNewsIndex === null) return;
+
+  const news = NEWS[currentOpenNewsIndex];
+  const box = document.getElementById("newsCommentsList");
+  if(!news || !box) return;
+
+  const comments = Array.isArray(news.comments) ? news.comments : [];
+
+  if(!comments.length){
+    box.innerHTML = '<div class="slot-note">Комментариев пока нет.</div>';
+    return;
+  }
+
+  box.innerHTML = comments.map((comment, index) => `
+    <div class="news-comment">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;">
+          <div class="news-comment-author" style="color:${escapeHtml(getNewsAuthorColor({
+            author_role: comment.author_role || "user"
+          }))}">
+            ${newsAuthorStarHtml({
+              author: comment.author,
+              author_is_partner: comment.author_is_partner
+            })}${escapeHtml(comment.author || "Игрок")}
+          </div>
+
+          ${
+            canDeleteComment(news, comment)
+              ? `<button class="news-comment-delete" onclick="deleteNewsComment(${index})">×</button>`
+              : ``
+          }
+        </div>
+
+        <div class="news-comment-text">${escapeHtml(comment.text || "")}</div>
+        <div class="news-comment-date">${escapeHtml(comment.date || "")}</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+async function addNewsComment(){
+  if(currentOpenNewsIndex === null) return;
+
+  if(!isLoggedIn()){
+    showAuthRequiredModal("Чтобы писать комментарии, войдите в аккаунт.");
+    return;
+  }
+
+  if(isBanned()){
+    showAuthRequiredModal("Заблокированный аккаунт не может писать комментарии.");
+    return;
+  }
+
+  const input = document.getElementById("newsCommentInput");
+  const text = String(input?.value || "").trim();
+
+  if(!text){
+    alert("Напишите комментарий");
+    return;
+  }
+
+  const user = getLoggedUser();
+  const news = NEWS[currentOpenNewsIndex];
+
+  try{
+    const response = await fetch(`http://localhost:3000/api/news/${news.id}/comments`, {
+      method: "POST",
+      headers: authHeaders(),
+      body: JSON.stringify({
+        user_id: user.id || null,
+        author_name: user.username,
+        author_role: user.role || "user",
+        author_is_partner: !!user.is_partner,
+        text
+      })
+    });
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось отправить комментарий");
+    }
+
+    input.value = "";
+    await loadNewsComments();
+
+  }catch(error){
+    console.error(error);
+    showAlert("Ошибка", error.message || "Не удалось отправить комментарий");
+  }
+}
+
+async function deleteNewsComment(index){
+  if(currentOpenNewsIndex === null) return;
+
+  const news = NEWS[currentOpenNewsIndex];
+  if(!news || !Array.isArray(news.comments)) return;
+
+  const comment = news.comments[index];
+
+  if(!canDeleteComment(news, comment)){
+    showAuthRequiredModal("Недостаточно прав для удаления комментария.");
+    return;
+  }
+
+  try{
+    const response = await fetch(`http://localhost:3000/api/news/${news.id}/comments/${comment.id}`, {
+  method: "DELETE",
+  headers: authHeaders()
+});
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось удалить комментарий");
+    }
+
+    await loadNewsComments();
+
+  }catch(error){
+    console.error(error);
+    showAlert("Ошибка", error.message || "Не удалось удалить комментарий");
+  }
+}
+async function loadNewsFromServer(){
+
+  try{
+
+    const response = await fetch("http://localhost:3000/api/news");
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось загрузить новости");
+    }
+
+    NEWS = data.news.map(n => ({
+
+      id: n.id,
+      title: n.title,
+      text: n.text,
+
+      author: n.author_name,
+      author_role: n.author_role || "user",
+      author_is_partner: !!n.author_is_partner,
+
+      cover: n.cover,
+
+      extraImages: Array.isArray(n.extra_images)
+        ? n.extra_images
+        : JSON.parse(n.extra_images || "[]"),
+
+      date: new Date(n.created_at).toLocaleDateString("ru-RU"),
+
+      comments: []
+
+    }));
+
+    console.log("NEWS FROM SERVER:", NEWS);
+
+    renderCards();
+
+  }catch(error){
+
+    console.error(error);
+
+    showAlert(
+      "Ошибка",
+      "Не удалось загрузить новости с сервера"
+    );
+
+  }
+
+}
     function renderCards(){
       emptyNews.style.display = NEWS.length ? 'none' : 'block';
       grid.innerHTML = NEWS.map((n,i)=>`
@@ -710,8 +1087,11 @@ async function readManyFiles(files){
           <span class="news-date">${escapeHtml(n.date || '')}</span>
           <h3>${escapeHtml(n.title)}</h3>
           <p>${escapeHtml((n.text || '').slice(0,130))}${(n.text || '').length > 130 ? '...' : ''}</p>
-          <div class="tag-row"><span class="tag">${escapeHtml(n.author || 'Автор')}</span></div>
-          <div class="news-card-actions"><span class="btn gold" onclick="event.stopPropagation();openNews(${i})">Открыть</span></div>
+          <div class="tag-row"><span class="tag">${newsAuthorHtml(n)}</span></div>
+          <div class="news-card-actions">
+  <button type="button" class="btn gold" onclick="event.stopPropagation(); openNews(${i});">Открыть</button>
+  <button type="button" class="btn ghost" onclick="event.stopPropagation(); openNews(${i});">Обсуждение</button>
+</div>
         </article>
       `).join('');
     }
@@ -738,10 +1118,21 @@ async function readManyFiles(files){
 
       document.getElementById('modalCover').src = n.cover || placeholder(n.title);
       document.getElementById('modalTitle').textContent = n.title;
-      document.getElementById('modalTags').innerHTML = `<span class="news-date">${escapeHtml(n.date || '')}</span><span class="tag">${escapeHtml(n.author || 'Автор')}</span>`;
+      document.getElementById('modalTags').innerHTML = `<span class="news-date">${escapeHtml(n.date || '')}</span><span class="tag">${newsAuthorHtml(n)}</span>`;
       document.getElementById('modalText').innerHTML = String(n.text || '').split('\n').filter(Boolean).map(p=>`<p>${escapeHtml(p)}</p>`).join('');
       document.getElementById('modalGallery').innerHTML = renderMediaGallery(currentOpenMediaList) || '<p class="slot-note">Дополнительных изображений нет.</p>';
-      document.getElementById('modalAdminActions').innerHTML = previewingRequest ? '' : '<button class="btn gold" onclick="editPublishedNews()">Редактировать</button><button class="btn danger" onclick="deletePublishedNews()">Удалить новость</button>';
+      let modalActions = '';
+
+      if(!previewingRequest && canEditNews()){
+        modalActions += '<button class="btn gold" onclick="editPublishedNews()">Редактировать</button>';
+      }
+
+      if(!previewingRequest && canDeleteNews()){
+        modalActions += '<button class="btn danger" onclick="deletePublishedNews()">Удалить новость</button>';
+      }
+
+      document.getElementById('modalAdminActions').innerHTML = modalActions;
+loadNewsComments();
 
       newsModal.classList.add('show');
       newsModal.classList.add('news-modal-top');
@@ -770,9 +1161,34 @@ async function readManyFiles(files){
     }
 
     function openForm(mode, editIndex = null){
+      if(!isLoggedIn()){
+        showAuthRequiredModal(mode === "suggest" ? "Чтобы предложить новость, войдите в аккаунт." : "Чтобы создавать или редактировать новости, войдите в аккаунт.");
+        return;
+      }
+
+      if(mode === "suggest" && !canSuggestNews()){
+        showAuthRequiredModal("Чтобы предложить новость, войдите в аккаунт.");
+        return;
+      }
+
+      if(mode === "create" && !canCreateNews()){
+        showAuthRequiredModal("Недостаточно прав. Создавать новости могут admin, developer, moderator и creator.");
+        return;
+      }
+
+      if(mode === "edit" && !canEditNews()){
+        showAuthRequiredModal("Недостаточно прав. Редактировать новости могут admin, developer и moderator.");
+        return;
+      }
+
       formMode = mode;
       editingNewsIndex = editIndex;
       clearForm();
+
+      const loggedUser = getLoggedUser();
+      if(loggedUser && loggedUser.username){
+        document.getElementById('newsAuthorInput').value = loggedUser.username;
+      }
 
       const isEdit = mode === 'edit';
       const item = isEdit ? NEWS[editIndex] : null;
@@ -803,6 +1219,26 @@ async function readManyFiles(files){
     }
 
     async function submitForm(){
+      if(!isLoggedIn()){
+        showAuthRequiredModal("Чтобы сохранить новость, войдите в аккаунт.");
+        return;
+      }
+
+      if(formMode === "suggest" && !canSuggestNews()){
+        showAuthRequiredModal("Чтобы предложить новость, войдите в аккаунт.");
+        return;
+      }
+
+      if(formMode === "create" && !canCreateNews()){
+        showAuthRequiredModal("Недостаточно прав. Публиковать новости могут admin, developer, moderator и creator.");
+        return;
+      }
+
+      if(formMode === "edit" && !canEditNews()){
+        showAuthRequiredModal("Недостаточно прав. Редактировать новости могут admin, developer и moderator.");
+        return;
+      }
+
       const title = document.getElementById('newsTitleInput').value.trim();
       const author = document.getElementById('newsAuthorInput').value.trim();
       const text = document.getElementById('newsTextInput').value.trim();
@@ -811,91 +1247,281 @@ async function readManyFiles(files){
       if(!author){ alert('Укажите, кто выпустил новость'); return; }
       if(!text){ alert('Напишите текст новости'); return; }
 
-      const item = {
-        id: Date.now(),
-        date: today(),
-        title,
-        author,
-        text,
-        cover: selectedCover || placeholder(title),
-        extraImages: selectedExtras
-      };
+      const loggedUser = getLoggedUser();
+
+const item = {
+  id: Date.now(),
+  date: today(),
+  title,
+
+  author,
+  author_role: loggedUser?.role || "user",
+  author_is_partner: !!loggedUser?.is_partner,
+
+  text,
+  cover: selectedCover || placeholder(title),
+  extraImages: selectedExtras
+};
 
       try{
-        if(formMode === 'edit'){
-          if(editingNewsIndex !== null && NEWS[editingNewsIndex]){
-            const oldItem = NEWS[editingNewsIndex];
-            NEWS[editingNewsIndex] = {
-              ...oldItem,
-              ...item,
-              id: oldItem.id || item.id,
-              date: oldItem.date || item.date
-            };
-            saveNews();
-            renderCards();
-            closeModal(formModal);
-            if(newsModal.classList.contains('show')) openNews(editingNewsIndex);
-            showAlert('Готово', 'Новость обновлена.');
-          }
-        } else if(formMode === 'create'){
-          NEWS.unshift(item);
-          try{
-            saveNews();
-          }catch(error){
-            NEWS.shift();
-            throw error;
-          }
-          renderCards();
-          closeModal(formModal);
-          showAlert('Готово', 'Новость размещена.');
-        } else {
-          NEWS_REQUESTS.unshift(item);
-          saveRequests();
-          closeModal(formModal);
-          alert('Заявка отправлена');
+
+  if(formMode === 'edit'){
+
+    if(editingNewsIndex !== null && NEWS[editingNewsIndex]){
+      const oldItem = NEWS[editingNewsIndex];
+
+      try{
+        const response = await fetch(`http://localhost:3000/api/news/${oldItem.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            title: item.title,
+            text: item.text,
+            cover: item.cover,
+            extra_images: item.extraImages || [],
+            author_role: item.author_role || "user",
+            author_is_partner: !!item.author_is_partner
+          })
+        });
+
+        const data = await response.json();
+
+        if(!data.ok){
+          throw new Error(data.error || "Не удалось обновить новость");
         }
+
+        closeModal(formModal);
+        await loadNewsFromServer();
+
+        if(newsModal.classList.contains('show')){
+          openNews(editingNewsIndex);
+        }
+
+        showAlert('Готово', 'Новость обновлена на сервере.');
+
       }catch(error){
         console.error(error);
+        showAlert("Ошибка", error.message || "Не удалось обновить новость");
       }
     }
 
-    function renderRequests(){
-      const box = document.getElementById('requestsList');
-      if(!NEWS_REQUESTS.length){
-        box.innerHTML = '<div class="empty-state">Заявок пока нет.</div>';
-        return;
+  } else if(formMode === 'create'){
+
+    try{
+      const response = await fetch("http://localhost:3000/api/news", {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({
+          title: item.title,
+          text: item.text,
+          cover: item.cover,
+          extra_images: item.extraImages || [],
+          author_name: item.author,
+          author_role: item.author_role || "user",
+          author_is_partner: !!item.author_is_partner
+        })
+      });
+
+      const data = await response.json();
+
+      if(!data.ok){
+        throw new Error(data.error || "Ошибка сохранения");
       }
 
-      box.innerHTML = NEWS_REQUESTS.map((r,i)=>`
-        <div class="request-card">
-          <h3>${escapeHtml(r.title)}</h3>
-          <span class="news-date">${escapeHtml(r.date)}</span>
-          <span class="tag">${escapeHtml(r.author)}</span>
-          <p>${escapeHtml((r.text || '').slice(0,260))}${(r.text || '').length > 260 ? '...' : ''}</p>
-          <div class="request-actions">
-            <button class="btn gold" onclick="approveRequest(${i})">Разместить новость</button>
-            <button class="btn ghost" onclick="previewRequest(${i})">Посмотреть</button>
-            <button class="btn danger" onclick="deleteRequest(${i})">Удалить</button>
-          </div>
-        </div>
-      `).join('');
+      showAlert('Готово', 'Новость опубликована');
+      await loadNewsFromServer();
+      closeModal(formModal);
+
+    }catch(error){
+      console.error(error);
+      showAlert('Ошибка', error.message || 'Не удалось сохранить новость');
     }
 
-    function approveRequest(index){
-      const item = NEWS_REQUESTS[index];
-      NEWS.unshift(item);
-      NEWS_REQUESTS.splice(index,1);
-      saveNews();
-      saveRequests();
-      renderCards();
-      renderRequests();
+  } else {
+
+    try{
+      const response = await fetch("http://localhost:3000/api/news-requests", {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({
+          title: item.title,
+          text: item.text,
+          cover: item.cover,
+          extra_images: item.extraImages || [],
+          author_name: item.author,
+          author_role: item.author_role || "user",
+          author_is_partner: !!item.author_is_partner
+        })
+      });
+
+      const data = await response.json();
+
+      if(!data.ok){
+        throw new Error(data.error || "Не удалось отправить заявку");
+      }
+
+      closeModal(formModal);
+      alert("Заявка отправлена на сервер");
+
+    }catch(error){
+      console.error(error);
+      showAlert("Ошибка", error.message || "Не удалось отправить заявку");
     }
 
-    function deleteRequest(index){
-      pendingDeleteRequestIndex = index;
-      confirmMode = 'request';
-      openConfirm('Удалить заявку?', 'Заявка будет удалена из списка.');
+  }
+
+}catch(error){
+  console.error(error);
+}
+
+}
+
+    async function loadNewsRequests(){
+
+  try{
+
+    const response = await fetch("http://localhost:3000/api/news-requests");
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось загрузить заявки");
     }
+
+    NEWS_REQUESTS = data.requests.map(r => ({
+
+      id: r.id,
+      title: r.title,
+      text: r.text,
+
+      author: r.author_name,
+      author_role: r.author_role || "user",
+      author_is_partner: !!r.author_is_partner,
+
+      cover: r.cover,
+
+      extraImages: Array.isArray(r.extra_images)
+        ? r.extra_images
+        : JSON.parse(r.extra_images || "[]"),
+
+      date: new Date(r.created_at).toLocaleDateString("ru-RU")
+
+    }));
+
+    renderRequests();
+
+  }catch(error){
+
+    console.error(error);
+
+    showAlert(
+      "Ошибка",
+      "Не удалось загрузить заявки"
+    );
+
+  }
+
+}
+
+function renderRequests(){
+  const list = document.getElementById('requestsList');
+
+  if(!NEWS_REQUESTS.length){
+    list.innerHTML = '<div class="empty-state">Заявок пока нет.</div>';
+    return;
+  }
+
+  list.innerHTML = NEWS_REQUESTS.map((n,i)=>`
+    <div class="request-card">
+      <span class="news-date">${escapeHtml(n.date || '')}</span>
+      <h3>${escapeHtml(n.title)}</h3>
+
+      <p><strong>Автор:</strong> ${newsAuthorHtml(n)}</p>
+
+      <p>${escapeHtml((n.text || '').slice(0,220))}${(n.text || '').length > 220 ? '...' : ''}</p>
+
+      <div class="request-actions">
+        <button class="btn gold" onclick="previewRequest(${i})">Открыть</button>
+        <button class="btn ghost" onclick="approveRequest(${i})">Опубликовать</button>
+        <button class="btn danger" onclick="deleteRequest(${i})">Удалить</button>
+      </div>
+    </div>
+  `).join('');
+}
+    async function approveRequest(index){
+  if(!canOpenNewsRequests()){
+    showAuthRequiredModal("Недостаточно прав. Размещать заявки может только Eighth#2020.");
+    return;
+  }
+
+  const request = NEWS_REQUESTS[index];
+  if(!request) return;
+
+  try{
+    const response = await fetch("http://localhost:3000/api/news", {
+      method: "POST",
+      headers: authHeaders(),
+      body: JSON.stringify({
+        title: request.title,
+        text: request.text,
+        cover: request.cover,
+        extra_images: request.extraImages || [],
+        author_name: request.author,
+        author_role: request.author_role || "user",
+        author_is_partner: !!request.author_is_partner
+      })
+    });
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось опубликовать заявку");
+    }
+
+    await fetch(`http://localhost:3000/api/news-requests/${request.id}`, {
+      method: "DELETE"
+    });
+
+    await loadNewsRequests();
+    await loadNewsFromServer();
+
+    showAlert("Готово", "Заявка опубликована в новости.");
+
+  }catch(error){
+    console.error(error);
+    showAlert("Ошибка", error.message || "Не удалось опубликовать заявку");
+  }
+}
+
+    async function deleteRequest(index){
+  if(!canOpenNewsRequests()){
+    showAuthRequiredModal("Недостаточно прав. Удалять заявки может только Eighth#2020.");
+    return;
+  }
+
+  const request = NEWS_REQUESTS[index];
+  if(!request) return;
+
+  try{
+    const response = await fetch(`http://localhost:3000/api/news-requests/${request.id}`, {
+  method: "DELETE",
+  headers: authHeaders()
+});
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось удалить заявку");
+    }
+
+    await loadNewsRequests();
+
+  }catch(error){
+    console.error(error);
+    showAlert("Ошибка", error.message || "Не удалось удалить заявку");
+  }
+}
 
     function previewRequest(index){
       const item = NEWS_REQUESTS[index];
@@ -935,31 +1561,71 @@ async function readManyFiles(files){
 
     document.getElementById('confirmNo')?.addEventListener('click',closeConfirm);
 
-    function actuallyDeleteNews(){
-      if(currentOpenNewsIndex === null || previewingRequest) return;
-      NEWS.splice(currentOpenNewsIndex,1);
-      saveNews();
-      renderCards();
-      closeModal(newsModal);
-      currentOpenNewsIndex = null;
+    async function actuallyDeleteNews(){
+  if(!canDeleteNews()){
+    showAuthRequiredModal("Недостаточно прав. Удалять новости могут admin, developer и moderator.");
+    return;
+  }
+
+  if(currentOpenNewsIndex === null || previewingRequest) return;
+
+  const news = NEWS[currentOpenNewsIndex];
+
+  try{
+    const response = await fetch(`http://localhost:3000/api/news/${news.id}`, {
+  method: "DELETE",
+  headers: authHeaders()
+});
+
+    const data = await response.json();
+
+    if(!data.ok){
+      throw new Error(data.error || "Не удалось удалить новость");
     }
 
+    closeModal(newsModal);
+    currentOpenNewsIndex = null;
+    await loadNewsFromServer();
+
+  }catch(error){
+    console.error(error);
+    showAlert("Ошибка", error.message || "Не удалось удалить новость");
+  }
+}
 function editPublishedNews(){
+      if(!canEditNews()){
+        showAuthRequiredModal("Недостаточно прав. Редактировать новости могут admin, developer и moderator.");
+        return;
+      }
+
       if(currentOpenNewsIndex === null || previewingRequest) return;
       openForm('edit', currentOpenNewsIndex);
       formModal.style.zIndex = '26000';
     }
 
-function deletePublishedNews(){ confirmMode = 'news'; openConfirm('Удалить новость?', 'Новость будет удалена из ленты.'); }
+function deletePublishedNews(){
+      if(!canDeleteNews()){
+        showAuthRequiredModal("Недостаточно прав. Удалять новости могут admin, developer и moderator.");
+        return;
+      }
+ confirmMode = 'news'; openConfirm('Удалить новость?', 'Новость будет удалена из ленты.'); }
 
     document.getElementById('openCreateNews').addEventListener('click',()=>openForm('create'));
     document.getElementById('openSuggestNews').addEventListener('click',()=>openForm('suggest'));
-    document.getElementById('openRequests').addEventListener('click',()=>{
-      renderRequests();
-      requestsModal.classList.add('show');
-      requestsModal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    });
+    document.getElementById('openRequests').addEventListener('click', async ()=>{
+
+  if(!canOpenNewsRequests()){
+    showAuthRequiredModal("Недостаточно прав. Заявки может открывать только Eighth#2020.");
+    return;
+  }
+
+  await loadNewsRequests();
+
+  requestsModal.classList.add('show');
+  requestsModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+
+});
 
     document.getElementById('newsCoverInput').addEventListener('change', async e=>{
       selectedCover = await readFileAsDataURL(e.target.files[0]);
@@ -1055,7 +1721,7 @@ function deletePublishedNews(){ confirmMode = 'news'; openConfirm('Удалит�
     window.deletePublishedNews = deletePublishedNews;
     window.editPublishedNews = editPublishedNews;
 
-    renderCards();
+    loadNewsFromServer();
   </script><script>
 history.scrollRestoration = "manual";
 
@@ -1154,6 +1820,240 @@ background:transparent;
     </div>
   </div>
 </footer>
+
+
+<div id="authRequiredModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:99999;
+justify-content:center;
+align-items:center;
+padding:24px;
+">
+  <div style="
+  width:min(460px,100%);
+  background:#0b1019;
+  border:1px solid rgba(232,194,112,.22);
+  border-radius:30px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  ">
+    <h2 style="
+    margin:0 0 12px;
+    color:#f0d28b;
+    font-size:30px;
+    letter-spacing:-.04em;
+    ">Нужно войти</h2>
+
+    <p id="authRequiredText" style="
+    margin:0 0 28px;
+    color:#cfc7ba;
+    line-height:1.6;
+    ">Чтобы работать с новостями, войдите в аккаунт.</p>
+
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    ">
+      <button onclick="goToAuth()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d6a84f,#f0d28b);
+      color:#16110a;
+      font-weight:900;
+      cursor:pointer;
+      ">Войти</button>
+
+      <button onclick="closeAuthRequiredModal()" style="
+      padding:14px 24px;
+      border-radius:999px;
+      border:1px solid #d6a84f;
+      background:transparent;
+      color:#d6a84f;
+      font-weight:900;
+      cursor:pointer;
+      ">Отмена</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="logoutModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:99999;
+justify-content:center;
+align-items:center;
+">
+
+  <div style="
+  width:420px;
+  background:#0b1019;
+  border:1px solid rgba(232,194,112,.18);
+  border-radius:30px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  ">
+
+    <h2 style="
+    margin:0 0 12px;
+    color:#f0d28b;
+    font-size:30px;
+    ">
+      Выйти из аккаунта?
+    </h2>
+
+    <p style="
+    margin:0 0 28px;
+    color:#cfc7ba;
+    line-height:1.6;
+    ">
+      Вы действительно хотите выйти?
+    </p>
+
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    ">
+
+      <button onclick="confirmLogout()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#d6a84f,#f0d28b);
+      color:#16110a;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Выйти
+      </button>
+
+      <button onclick="closeLogoutModal()" style="
+      padding:14px 24px;
+      border-radius:999px;
+      border:1px solid #d6a84f;
+      background:transparent;
+      color:#d6a84f;
+      font-weight:900;
+      cursor:pointer;
+      ">
+        Отмена
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("user"));
+if (currentUser?.role === "banned") {
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  alert("Ваш аккаунт заблокирован");
+
+  window.location.href = "auth.html";
+}
+const adminLink = document.getElementById("adminPanelLink");
+
+if (
+  currentUser &&
+  currentUser.username === "Eighth#2020" &&
+  adminLink
+) {
+  adminLink.style.display = "inline-flex";
+}
+
+const roleColors = {
+  user: "#ffffff",
+  admin: "#6f3cff",
+  developer: "#0f7b43",
+  moderator: "#57d46a",
+  vip: "#59c8ff",
+  creator: "#ff9d42",
+  banned: "#ff4d4d"
+};
+function userStarHtml(user){
+  if(!user) return "";
+
+  if(user.username === "Eighth#2020"){
+    return '<span style="color:#6f3cff;filter:drop-shadow(0 0 8px #6f3cff)">⭐</span> ';
+  }
+
+  if(user.is_partner){
+    return '<span style="color:#f0d28b;filter:drop-shadow(0 0 8px #f0d28b)">⭐</span> ';
+  }
+
+  return "";
+}
+function findAuthButton(){
+  const buttons = document.querySelectorAll("a.btn");
+
+  for (const btn of buttons) {
+    const text = btn.textContent.trim();
+    const href = btn.getAttribute("href");
+
+    if (
+      href === "auth.html" ||
+      text === "Войти" ||
+      (currentUser && text === currentUser.username)
+    ) {
+      return btn;
+    }
+  }
+
+  return null;
+}
+
+const authBtn = findAuthButton();
+
+if(currentUser && authBtn){
+
+  authBtn.innerHTML = userStarHtml(currentUser) + currentUser.username;
+
+  authBtn.classList.remove("gold");
+  authBtn.classList.add("ghost");
+
+  authBtn.style.background = "rgba(255,255,255,.06)";
+  authBtn.style.border = "1px solid rgba(232,194,112,.35)";
+  authBtn.style.boxShadow = "none";
+  authBtn.style.color = roleColors[currentUser.role] || "#ffffff";
+
+  authBtn.href = "#";
+
+  authBtn.onclick = function(e){
+    e.preventDefault();
+    document.getElementById("logoutModal").style.display = "flex";
+  };
+}
+
+function confirmLogout(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  location.reload();
+}
+
+function closeLogoutModal(){
+  document.getElementById("logoutModal").style.display = "none";
+}
+</script>
+
 
 </body>
 </html>
